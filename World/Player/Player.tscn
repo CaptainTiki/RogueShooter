@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk8ddt7gcjun8"]
+
+[ext_resource type="Script" uid="uid://djrhmqbq77fps" path="res://World/Player/player.gd" id="1_oytbf"]
+[ext_resource type="PackedScene" uid="uid://dbyth7f3lfsl4" path="res://Utilities/camera_rig.tscn" id="2_kogn4"]
+[ext_resource type="PackedScene" uid="uid://0px1xh6r4tw5" path="res://Components/player_input.tscn" id="2_yh66h"]
+[ext_resource type="PackedScene" uid="uid://c1570lpqnhmmq" path="res://Components/move_controller.tscn" id="3_8lyh0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oytbf"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh66h"]
+albedo_color = Color(0.5308541, 0.33141747, 0.36881855, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tsnpf"]
+material = SubResource("StandardMaterial3D_yh66h")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.5
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_mask = 66304
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 0.87266463
+floor_snap_length = 0.25
+script = ExtResource("1_oytbf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_oytbf")
+
+[node name="PlayerInput" parent="." instance=ExtResource("2_yh66h")]
+
+[node name="MoveController" parent="." node_paths=PackedStringArray("player", "input") instance=ExtResource("3_8lyh0")]
+player = NodePath("..")
+input = NodePath("../PlayerInput")
+
+[node name="MeshRig" type="Node3D" parent="."]
+
+[node name="YawPivot" type="Node3D" parent="MeshRig"]
+
+[node name="PitchPivot" type="Node3D" parent="MeshRig/YawPivot"]
+
+[node name="CameraRig" parent="MeshRig/YawPivot/PitchPivot" instance=ExtResource("2_kogn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65865064, -0.14403659)
+
+[node name="RightArmMesh" type="MeshInstance3D" parent="MeshRig/YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5029007, 0.08882916, -0.83309025)
+mesh = SubResource("CylinderMesh_tsnpf")
+
+[node name="LeftArmMesh" type="MeshInstance3D" parent="MeshRig/YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.49709928, 0.08882916, -0.83309025)
+mesh = SubResource("CylinderMesh_tsnpf")
+
+[node name="WeaponAttachNode" type="Node3D" parent="MeshRig/YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52123463, 0.06815177, -0.99207884)

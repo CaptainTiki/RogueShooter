@@ -1,0 +1,93 @@
+extends Node3D
+class_name PlayerMoveController
+
+@export_category("Nodes")
+@export var player : Player
+@export var input : InputNode
+@export_category("InputSettings")
+@export var sensitivity : float = 0.005
+@export var pitch_min_deg : float = -80.0
+@export var pitch_max_deg : float = 80.0
+@export var friction : float = 12
+
+var pitch : float = 0.0
+var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var coyote_timer = 0
+var jump_buffer_timer = 0
+
+#func _ready() -> void:
+	#gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _physics_process(delta: float) -> void:
+	handle_rotation(delta)
+	handle_movement(delta)
+	handle_jump(delta)
+	apply_gravity(delta)
+	player.move_and_slide()
+
+func handle_rotation(_delta: float) -> void:
+	var look_delta = input.get_look_delta()
+	player.yaw_pivot.global_rotation.y += -look_delta.x * sensitivity
+	pitch += -look_delta.y * sensitivity
+	pitch = clamp(pitch, deg_to_rad(pitch_min_deg), deg_to_rad(pitch_max_deg))
+	player.pitch_pivot.global_rotation.x = pitch
+
+func apply_gravity(delta: float) -> void:
+	if not player.is_on_floor():
+		player.velocity.y -= gravity * delta
+	elif player.velocity.y < 0:
+		player.velocity.y = 0
+
+func handle_jump(delta: float) -> void:
+	if player.is_on_floor():
+		coyote_timer = player.jump_coyote_time
+	
+	coyote_timer -= delta
+	
+	if input.jump_pressed:
+		if player.is_on_floor() or coyote_timer > 0:
+			player.velocity.y = player.jump_velocity
+		elif player.velocity.y < 0:
+			jump_buffer_timer = player.jump_buffer_time
+			
+	if jump_buffer_timer > 0:
+		jump_buffer_timer -= delta
+		if player.is_on_floor():
+			player.velocity.y = player.jump_velocity
+			jump_buffer_timer = -1
+	
+	if input.jump_released and player.velocity.y > 0:
+		player.velocity.y *= player.jump_cut_multiplier
+
+func handle_movement(delta: float) -> void:
+	var accel = 0
+	if player.is_on_floor():
+		accel = player.accel_grounded
+	else:
+		accel = player.accel_in_air
+		
+	player.velocity.x = lerp(player.velocity.x, 0.0, friction * delta)
+	player.velocity.z = lerp(player.velocity.z, 0.0, friction * delta)
+	
+	var move_input = input.get_move_input()
+	
+	if move_input.length() > 1:
+		move_input = move_input.normalized()
+	
+	var player_basis = player.yaw_pivot.global_transform.basis
+	var wish_dir = (-player_basis.z * move_input.z) + (player_basis.x * move_input.x)
+	var horiz_vel : Vector2 = Vector2(player.velocity.x, player.velocity.z)
+	var horiz_add : Vector2 = Vector2(wish_dir.x, wish_dir.z) * accel * delta
+
+	horiz_vel += horiz_add
+
+	player.velocity.x = horiz_vel.x
+	player.velocity.z = horiz_vel.y
+	
+	var horizontal = Vector2(player.velocity.x, player.velocity.z)
+	
+	if horizontal.length() > player.speed_run:
+		horizontal = horizontal.normalized() * player.speed_run
+		player.velocity.x = horizontal.x
+		player.velocity.z = horizontal.y
