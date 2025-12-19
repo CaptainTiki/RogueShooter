@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GunPartDef" load_steps=2 format=3 uid="uid://3emgej4jklwe"]
+
+[ext_resource type="Script" uid="uid://cxbqwps6aam41" path="res://World/Guns/gun_part_def.gd" id="1_cb0jo"]
+
+[resource]
+script = ExtResource("1_cb0jo")
+id = "barrel_standard"
+display_name = "Standard Barrel"
+slot_type = 1
+description = "Somebody dropped this"
+platform = 1
+ammo_family = 1
+metadata/_custom_type_script = "uid://cxbqwps6aam41"

@@ -14,9 +14,7 @@ func _ready() -> void:
 	pass
 
 func _on_interact_area_body_entered(body: Node3D) -> void:
-	print("entered")
 	if body.is_in_group("player"):
-		print("is player")
 		in_range = true
 		interactor = body
 
@@ -36,8 +34,3 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interacted.emit()
 		_do_interaction()
-
-
-func _on_interact_area_area_entered(area: Area3D) -> void:
-	print("ahhhhh")
-	pass # Replace with function body.

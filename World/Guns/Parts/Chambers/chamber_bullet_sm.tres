@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GunPartDef" load_steps=2 format=3 uid="uid://b78y2ptm76xq1"]
+
+[ext_resource type="Script" uid="uid://cxbqwps6aam41" path="res://World/Guns/gun_part_def.gd" id="1_kkui8"]
+
+[resource]
+script = ExtResource("1_kkui8")
+id = "chamber_bullet_sm"
+display_name = "Small Bullet Chamber"
+slot_type = 4
+description = "Somethings were meant to be thrown away"
+platform = 1
+ammo_family = 1
+metadata/_custom_type_script = "uid://cxbqwps6aam41"
