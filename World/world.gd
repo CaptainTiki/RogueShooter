@@ -6,11 +6,17 @@ extends Node3D
 @onready var c_scene : PackedScene = preload("res://Utilities/camera_rig.tscn")
 @onready var d_scene : PackedScene = preload("uid://1cot5nx5hi81")
 
+@onready var pause_scene : PackedScene = preload("res://UI/pause_menu.tscn")
+
+@onready var ui_layer: CanvasLayer = $UILayer
+
 var player : Player
 var basement: Basement
 var level : Level
 var camera_rig : CameraRig
 var debug_overlay : DebugOverlay
+
+var pause_menu : PauseMenu
 
 func _ready() -> void:
 	pass
@@ -32,3 +38,8 @@ func setup_world() -> void:
 	level.global_position.y += -4.8
 	level.global_position.x += 9.2
 	level.global_position.z += 22.8
+
+func setup_menus() -> void:
+	pause_menu = pause_scene.instantiate() as PauseMenu
+	pause_menu.hide()
+	ui_layer.add_child(pause_menu)
