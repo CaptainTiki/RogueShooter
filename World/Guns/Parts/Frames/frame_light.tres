@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="GunPartDef" load_steps=2 format=3 uid="uid://dvtf708j4ex0s"]
+[gd_resource type="Resource" script_class="FrameDef" load_steps=2 format=3 uid="uid://dydlfqehexc0k"]
 
-[ext_resource type="Script" uid="uid://cxbqwps6aam41" path="res://World/Guns/gun_part_def.gd" id="1_vwwsj"]
+[ext_resource type="Script" uid="uid://b85se1brlkdki" path="res://World/Guns/Parts/frame_def.gd" id="1_vwwsj"]
 
 [resource]
 script = ExtResource("1_vwwsj")
 id = "frame_light"
 display_name = "Lightweight Frame"
 slot_type = 2
-description = "It has Fragile written in large letters on the side."
-platform = 1
-ammo_family = 1
-metadata/_custom_type_script = "uid://cxbqwps6aam41"
+description = "Dont squeeze too hard, it might break"
+metadata/_custom_type_script = "uid://b85se1brlkdki"

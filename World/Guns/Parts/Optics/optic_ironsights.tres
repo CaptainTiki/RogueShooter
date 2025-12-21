@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="OpticsDef" load_steps=2 format=3 uid="uid://cp0rx5157kbnv"]
+
+[ext_resource type="Script" uid="uid://bwlq74nt3p8od" path="res://World/Guns/Parts/optics_def.gd" id="1_fd111"]
+
+[resource]
+script = ExtResource("1_fd111")
+id = "optics_iron_sights"
+display_name = "Iron Sights"
+slot_type = 5
+description = "The definition of Unhelpful"
+platform = 1
+metadata/_custom_type_script = "uid://bwlq74nt3p8od"

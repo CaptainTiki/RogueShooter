@@ -4,6 +4,7 @@ class_name GunPartDef
 enum Type {NONE, BARREL, FRAME, MAG, CHAMBER, OPTICS}
 enum Platform {NONE, ALL, PISTOL, SHOTGUN, SMG, ASSAULT, HMG, SNIPER}
 enum AmmoFamily {NONE, ALL, BULLET_SM, BULLET_LG}
+enum Delivery {HITSCAN, PROJECTILE}
 
 enum Tags {NONE} #any tag that doesn't fit into the above enums
 
@@ -14,8 +15,8 @@ enum Tags {NONE} #any tag that doesn't fit into the above enums
 @export var description : String = "Optional Fluff Text"
 
 @export_category("Compatability")
-@export var platform : Platform = Platform.NONE
-@export var ammo_family : AmmoFamily = AmmoFamily.NONE
+@export var platform : Platform = Platform.ALL
+@export var ammo_compat : AmmoFamily = AmmoFamily.ALL
 
 @export_category("Modifiers")
 @export var mods : Dictionary = {}
@@ -25,4 +26,4 @@ enum Tags {NONE} #any tag that doesn't fit into the above enums
 @export var requires_tags : Array[Tags] = []
 
 @export_category("Visuals")
-var visual_scene : PackedScene = null
+@export var visual_scene : PackedScene = null

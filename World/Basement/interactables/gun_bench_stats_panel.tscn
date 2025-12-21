@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6d6y5euncuck"]
+
+[ext_resource type="Script" uid="uid://ciqawrnk8g073" path="res://World/Basement/interactables/gun_bench_stats_panel.gd" id="1_3vtlq"]
+
+[node name="GunBenchStatsPanel" type="Panel"]
+size_flags_vertical = 3
+script = ExtResource("1_3vtlq")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 7
+columns = 4
+
+[node name="Dmg_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Damage: "
+
+[node name="Dmg_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="FireRate_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Fire Rate:"
+
+[node name="FireRate_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="MagSize_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Mag Size: "
+
+[node name="MagSize_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="ReloadTime_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Reload Time:"
+
+[node name="ReloadTime_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="Accuracy_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Accuracy: "
+
+[node name="Accuracy_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="Recoil_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Recoil: "
+
+[node name="Recoil_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"
+
+[node name="DPS_title" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "DPS: "
+
+[node name="DPS_label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "###"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MagDef" load_steps=2 format=3 uid="uid://cxi8ua2cmnloc"]
+
+[ext_resource type="Script" uid="uid://c06il4ag1gwpp" path="res://World/Guns/Parts/mag_def.gd" id="1_v2p4q"]
+
+[resource]
+script = ExtResource("1_v2p4q")
+id = "mag_small"
+display_name = "Small Magazine"
+slot_type = 3
+description = "Only Heros can put more than 1 round in this"
+metadata/_custom_type_script = "uid://c06il4ag1gwpp"
