@@ -1,5 +1,7 @@
-extends Node
+extends Resource
 class_name GunStats
+
+var fire_mode : GunPartDef.FireMode = GunPartDef.FireMode.NONE
 
 var damage : float = 0
 var fire_rate : float = 0

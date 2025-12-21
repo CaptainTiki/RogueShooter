@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ChamberDef" load_steps=2 format=3 uid="uid://11i4gtgfc11d"]
+
+[ext_resource type="Script" uid="uid://dpli4f00gjajo" path="res://World/Guns/Parts/chamber_def.gd" id="1_2uy7p"]
+
+[resource]
+script = ExtResource("1_2uy7p")
+damage = 18.0
+ammo_type = 3
+id = "chamber_bullet_lg"
+display_name = "Large Bullet Chamber"
+slot_type = 4
+description = "Surprisingly Large Cavity for inputing bullets"
+ammo_compat = 3
+metadata/_custom_type_script = "uid://dpli4f00gjajo"

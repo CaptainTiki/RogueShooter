@@ -152,18 +152,23 @@ size_flags_vertical = 3
 layout_mode = 2
 gun_bench = NodePath("../../../..")
 
-[node name="Exit" type="Button" parent="GunBenchMenu"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -37.0
-offset_bottom = 31.0
-grow_horizontal = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="GunBenchMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Apply" type="Button" parent="GunBenchMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Apply"
+
+[node name="Cancel" type="Button" parent="GunBenchMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 0
-text = "X"
+text = "Cancel"
 
 [connection signal="pressed" from="GunBenchMenu/MarginContainer/VBox_Main/HBox_Top/Left_Panel/HBoxContainer/BarrelButton" to="." method="_on_barrel_bn_pressed"]
 [connection signal="pressed" from="GunBenchMenu/MarginContainer/VBox_Main/HBox_Top/Left_Panel/HBoxContainer/Frame" to="." method="_on_frame_bn_pressed"]
 [connection signal="pressed" from="GunBenchMenu/MarginContainer/VBox_Main/HBox_Top/Left_Panel/HBoxContainer/Magazine" to="." method="_on_magazine_bn_pressed"]
 [connection signal="pressed" from="GunBenchMenu/MarginContainer/VBox_Main/HBox_Top/Left_Panel/HBoxContainer/Chamber" to="." method="_on_chamber_bn_pressed"]
 [connection signal="pressed" from="GunBenchMenu/MarginContainer/VBox_Main/HBox_Top/Left_Panel/HBoxContainer/Optics" to="." method="_on_optics_bn_pressed"]
+[connection signal="pressed" from="GunBenchMenu/MarginContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]

@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_fd111")
+spread = 0.5
 id = "optics_iron_sights"
 display_name = "Iron Sights"
 slot_type = 5
 description = "The definition of Unhelpful"
-platform = 1
 metadata/_custom_type_script = "uid://bwlq74nt3p8od"

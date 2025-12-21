@@ -4,6 +4,7 @@ class_name GunPartDef
 enum Type {NONE, BARREL, FRAME, MAG, CHAMBER, OPTICS}
 enum Platform {NONE, ALL, PISTOL, SHOTGUN, SMG, ASSAULT, HMG, SNIPER}
 enum AmmoFamily {NONE, ALL, BULLET_SM, BULLET_LG}
+enum FireMode {NONE, SEMI, AUTO, CHARGE}
 enum Delivery {HITSCAN, PROJECTILE}
 
 enum Tags {NONE} #any tag that doesn't fit into the above enums

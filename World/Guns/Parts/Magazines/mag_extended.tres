@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MagDef" load_steps=2 format=3 uid="uid://ddb4bevuxap4o"]
+
+[ext_resource type="Script" uid="uid://c06il4ag1gwpp" path="res://World/Guns/Parts/mag_def.gd" id="1_uixso"]
+
+[resource]
+script = ExtResource("1_uixso")
+capacity = 18.0
+reload_time = 1.65
+id = "mag_extended"
+display_name = "Extended Magazine"
+slot_type = 3
+description = "It takes more than 1 hand to count these bullets"
+metadata/_custom_type_script = "uid://c06il4ag1gwpp"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk8ddt7gcjun8"]
+[gd_scene load_steps=10 format=3 uid="uid://bk8ddt7gcjun8"]
 
 [ext_resource type="Script" uid="uid://djrhmqbq77fps" path="res://World/Player/player.gd" id="1_oytbf"]
 [ext_resource type="PackedScene" uid="uid://dbyth7f3lfsl4" path="res://Utilities/camera_rig.tscn" id="2_kogn4"]
 [ext_resource type="PackedScene" uid="uid://0px1xh6r4tw5" path="res://Components/player_input.tscn" id="2_yh66h"]
 [ext_resource type="PackedScene" uid="uid://c1570lpqnhmmq" path="res://Components/move_controller.tscn" id="3_8lyh0"]
+[ext_resource type="Script" uid="uid://v438766h8mbw" path="res://World/Player/weapon.gd" id="5_8lyh0"]
+[ext_resource type="Texture2D" uid="uid://oxg2qaomimo3" path="res://Assets/Textures/Reticle.png" id="6_tsnpf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oytbf"]
 radius = 0.4
@@ -47,9 +49,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65865064, -0.14403659)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.5029007, 0.08882916, -0.83309025)
 mesh = SubResource("CylinderMesh_tsnpf")
 
+[node name="Weapon" type="Node3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh" node_paths=PackedStringArray("player", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19467384, 0.061300643)
+script = ExtResource("5_8lyh0")
+player = NodePath("../../../../..")
+camera = NodePath("../../CameraRig/Camera3D")
+
+[node name="GunPart_Meshs" type="CSGCombiner3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon"]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, -1, 4.3711392e-08, 4.3711385e-08, -4.371139e-08, -4.371139e-08, -1, 0.5221945, 0.10517615, 0.16344982)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon/GunPart_Meshs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18328416, 0.51628417, 0.0748469)
+size = Vector3(0.17822266, 0.032568365, 0.04169922)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon/GunPart_Meshs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0076358765, 0.51628417, 0.0890803)
+size = Vector3(0.17822266, 0.032568365, 0.070166014)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon/GunPart_Meshs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008139268, 0.52132565, 0.09070994)
+size = Vector3(0.11694336, 0.04265137, 0.03939209)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon/GunPart_Meshs"]
+transform = Transform3D(0.89769715, 0, 0.440613, 0, 1, 0, -0.440613, 0, 0.89769715, 0.084355325, 0.514212, 0.14336193)
+size = Vector3(0.052612305, 0.028424073, 0.14469604)
+
+[node name="FireTimer" type="Timer" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon"]
+one_shot = true
+
+[node name="Muzzle" type="Marker3D" parent="MeshRig/YawPivot/PitchPivot/RightArmMesh/Weapon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005111456, 0.43561304, 0.09104027)
+
 [node name="LeftArmMesh" type="MeshInstance3D" parent="MeshRig/YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.49709928, 0.08882916, -0.83309025)
 mesh = SubResource("CylinderMesh_tsnpf")
 
 [node name="WeaponAttachNode" type="Node3D" parent="MeshRig/YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52123463, 0.06815177, -0.99207884)
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD/Control"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_tsnpf")
+
+[editable path="MeshRig/YawPivot/PitchPivot/CameraRig"]

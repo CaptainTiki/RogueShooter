@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_v2p4q")
+reload_time = 1.35
 id = "mag_small"
 display_name = "Small Magazine"
 slot_type = 3

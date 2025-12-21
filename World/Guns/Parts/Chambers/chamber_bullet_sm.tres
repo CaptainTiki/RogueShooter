@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource("1_kkui8")
+damage = 12.0
 id = "chamber_bullet_sm"
 display_name = "Small Bullet Chamber"
 slot_type = 4
 description = "Wont Explode... hopefully"
+ammo_compat = 2
 metadata/_custom_type_script = "uid://dpli4f00gjajo"
