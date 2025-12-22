@@ -1,0 +1,82 @@
+# ImpactDecal.gd
+extends Node3D
+class_name ImpactDecal
+
+@export var lifetime : float = 15.0           # seconds before it disappears
+@export var fade_time : float = 0.5          # last X seconds are fade-out
+@export var random_roll : bool = false       # random rotation around the normal
+@export var offset_from_surface : float = 0.01  # prevents z-fighting
+
+@onready var decal: Decal = $Decal
+
+var _age : float = 0.0
+var _start_modulate : Color
+
+func _ready() -> void:
+	# Decal.modulate exists in Godot 4 (Color). We'll fade alpha.
+	$Decal.rotate_y(deg_to_rad(45))
+	_start_modulate = decal.modulate
+
+func reset_and_place(hit_pos: Vector3, hit_normal: Vector3) -> void:
+	var n := hit_normal.normalized()
+
+	# Slight offset so we don't z-fight
+	global_position = hit_pos + n * offset_from_surface
+
+	# Stable up reference
+	var up_ref := Vector3.UP
+	if abs(n.dot(up_ref)) > 0.95:
+		up_ref = Vector3.FORWARD
+
+	# IMPORTANT:
+	# forward (-Z) should point INTO the surface => forward = -n
+	global_basis = Basis.looking_at(-n, up_ref, false)
+
+
+	if random_roll:
+		rotate_object_local(Vector3.FORWARD, randf() * TAU)
+
+	# Debug check
+	var forward := -global_transform.basis.z
+	print("n:", n, " forward:", forward, " dot:", forward.dot(n))
+
+	_age = 0.0
+	decal.modulate = _start_modulate
+	visible = true
+	set_process(true)
+
+func place_decal(hit_pos: Vector3, hit_normal: Vector3) -> void:
+	var n := hit_normal.normalized()
+
+	# Pick any vector that's NOT parallel to n
+	var ref := Vector3.FORWARD
+	if abs(n.dot(ref)) > 0.95:
+		ref = Vector3.RIGHT
+
+	# Build an orthonormal basis where Y == n
+	var x := ref.cross(n).normalized()
+	var z := x.cross(n).normalized()
+	var b := Basis(x, n, z)  # x,y,z axes
+
+	global_transform = Transform3D(b, hit_pos + n * offset_from_surface)
+
+	# Random roll around the normal (which is local +Y now)
+	if random_roll:
+		rotate_object_local(Vector3.UP, randf() * TAU)
+
+
+func _process(delta: float) -> void:
+	_age += delta
+
+	if _age >= lifetime:
+		visible = false
+		set_process(false)
+		return
+
+	# Fade out near the end
+	var time_left := lifetime - _age
+	if time_left <= fade_time:
+		var t : float = clamp(time_left / fade_time, 0.0, 1.0)
+		var c : Color = decal.modulate
+		c.a = _start_modulate.a * t
+		decal.modulate = c

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhpptk8iwwxs6"]
+
+[ext_resource type="Script" uid="uid://bb8pk661rnka" path="res://Utilities/impact_decal.gd" id="1_pv6eo"]
+[ext_resource type="Texture2D" uid="uid://bjl53b2i55hqy" path="res://Assets/Textures/bullethole.jpg" id="2_utoqn"]
+
+[node name="ImpactDecal" type="Node3D"]
+script = ExtResource("1_pv6eo")
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = ExtResource("2_utoqn")

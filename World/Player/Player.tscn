@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dbyth7f3lfsl4" path="res://Utilities/camera_rig.tscn" id="2_kogn4"]
 [ext_resource type="PackedScene" uid="uid://0px1xh6r4tw5" path="res://Components/player_input.tscn" id="2_yh66h"]
 [ext_resource type="PackedScene" uid="uid://c1570lpqnhmmq" path="res://Components/move_controller.tscn" id="3_8lyh0"]
-[ext_resource type="Script" uid="uid://v438766h8mbw" path="res://World/Player/weapon.gd" id="5_8lyh0"]
+[ext_resource type="Script" uid="uid://bsbetfgxjw03p" path="res://World/Player/weapon.gd" id="5_8lyh0"]
 [ext_resource type="Texture2D" uid="uid://oxg2qaomimo3" path="res://Assets/Textures/Reticle.png" id="6_tsnpf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oytbf"]

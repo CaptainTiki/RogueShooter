@@ -7,7 +7,7 @@ extends Node3D
 @onready var d_scene : PackedScene = preload("uid://1cot5nx5hi81")
 
 @onready var pause_scene : PackedScene = preload("res://UI/pause_menu.tscn")
-
+@onready var impact_manager: ImpactManager = $Managers/ImpactManager
 @onready var ui_layer: CanvasLayer = $UILayer
 
 var player : Player

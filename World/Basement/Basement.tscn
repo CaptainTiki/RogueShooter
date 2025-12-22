@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp7rw0rs2qkqa"]
+[gd_scene load_steps=6 format=3 uid="uid://dp7rw0rs2qkqa"]
 
 [ext_resource type="Script" uid="uid://bj266tqq25n46" path="res://World/Basement/basement.gd" id="1_xjo1g"]
 [ext_resource type="PackedScene" uid="uid://bfuwqanoc3n16" path="res://World/Basement/interactables/gun_bench.tscn" id="2_s0wtm"]
+[ext_resource type="PackedScene" uid="uid://bhpptk8iwwxs6" path="res://Utilities/ImpactDecal.tscn" id="3_bn6ud"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0p7gk"]
 albedo_color = Color(0.47788018, 0.47788012, 0.47788012, 1)
@@ -195,3 +196,6 @@ gizmo_extents = 1.0
 
 [node name="GunBench" parent="Benches" instance=ExtResource("2_s0wtm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.1699917, 0, 7.7081003)
+
+[node name="ImpactDecal" parent="." instance=ExtResource("3_bn6ud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8279422, 0.2859462, 7.6918063)

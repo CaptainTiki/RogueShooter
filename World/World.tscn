@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvsurskv3av0k"]
+[gd_scene load_steps=7 format=3 uid="uid://dvsurskv3av0k"]
 
 [ext_resource type="Script" uid="uid://dn01o6e1gfh6m" path="res://World/world.gd" id="1_il6x7"]
+[ext_resource type="Script" uid="uid://bliou5bomtavd" path="res://Systems/ImpactManager.gd" id="2_y6flb"]
+[ext_resource type="PackedScene" uid="uid://bhpptk8iwwxs6" path="res://Utilities/ImpactDecal.tscn" id="3_mlekv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_85nsh"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,3 +30,10 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Managers" type="Node3D" parent="."]
+
+[node name="ImpactManager" type="Node3D" parent="Managers"]
+script = ExtResource("2_y6flb")
+impact_scene = ExtResource("3_mlekv")
+metadata/_custom_type_script = "uid://bliou5bomtavd"

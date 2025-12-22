@@ -23,7 +23,6 @@ signal weapon_changed
 
 @onready var yaw_pivot: Node3D = $MeshRig/YawPivot
 @onready var pitch_pivot: Node3D = $MeshRig/YawPivot/PitchPivot
-@onready var muzzle: Marker3D = $MeshRig/YawPivot/PitchPivot/RightArmMesh/Muzzle
 
 var jump_buffer_triggered : bool = false
 

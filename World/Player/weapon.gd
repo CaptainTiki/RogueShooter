@@ -80,14 +80,14 @@ func _fire_weapon() -> void:
 	
 	var collider: Object = hit["collider"]
 	var hit_pos: Vector3 = hit["position"]
+	var hit_norm: Vector3 = hit["normal"]
 	
 	if collider is Node:
 		var hc := (collider as Node).get_node_or_null("HealthComponent")
 		if hc and hc.has_method("take_damage"):
 			hc.take_damage(stats.damage)
 	
-	print("Hit:", (collider as Node).name, "at", hit_pos)
-	
+	World.impact_manager.spawn_impact(hit_pos, hit_norm)
 	
 	
 
