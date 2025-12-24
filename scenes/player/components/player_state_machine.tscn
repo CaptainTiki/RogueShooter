@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://u3hg0wghpfxf"]
+
+[ext_resource type="Script" uid="uid://xmjhyo7pc3lh" path="res://scripts/player/components/player_state_machine.gd" id="1_adu03"]
+[ext_resource type="Script" uid="uid://ch6ct6aj2nxqv" path="res://scripts/player/states/player_idle_state.gd" id="2_u7chd"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_adu03")
+
+[node name="MovementState" type="Node" parent="."]
+
+[node name="GroundedState" type="Node" parent="MovementState"]
+
+[node name="IdleState" type="Node" parent="MovementState/GroundedState"]
+script = ExtResource("2_u7chd")
+
+[node name="MovingState" type="Node" parent="MovementState/GroundedState"]
+
+[node name="WalkingState" type="Node" parent="MovementState/GroundedState/MovingState"]
+
+[node name="SprintingState" type="Node" parent="MovementState/GroundedState/MovingState"]
+
+[node name="AirborneState" type="Node" parent="MovementState"]

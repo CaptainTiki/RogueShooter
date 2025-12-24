@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://boueadv328mwd"]
+
+[ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_1ykrc"]
+[ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="2_ycx7s"]
+
+[node name="PrototypeLevel" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_1ykrc")]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGCombiner3D" parent="Geometry"]
+use_collision = true
+collision_layer = 256
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(20, 0.1, 20)
+
+[node name="CrouchCheck" type="CSGCombiner3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+use_collision = true
+collision_layer = 256
+collision_mask = 0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/CrouchCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+size = Vector3(3, 0.1, 3)
+
+[node name="PlayerController" parent="." instance=ExtResource("2_ycx7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0948617, 0)

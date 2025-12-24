@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgsjypdadiqmh"]
+
+[ext_resource type="PackedScene" uid="uid://d06eq1wf4ohgs" path="res://scenes/system/user_interface.tscn" id="1_hcmxi"]
+[ext_resource type="PackedScene" uid="uid://boueadv328mwd" path="res://levels/prototype_level.tscn" id="2_mgb3u"]
+[ext_resource type="PackedScene" uid="uid://y58fyrvshec1" path="res://scenes/system/game_manager.tscn" id="2_qoi2i"]
+
+[node name="MainScene" type="Node3D"]
+
+[node name="UserInterface" parent="." instance=ExtResource("1_hcmxi")]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" parent="Managers" instance=ExtResource("2_qoi2i")]
+
+[node name="CurrentLeve" type="Node3D" parent="."]
+
+[node name="PrototypeLevel" parent="CurrentLeve" instance=ExtResource("2_mgb3u")]

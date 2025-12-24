@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dggwg41jgwgxq"]
+
+[ext_resource type="Script" uid="uid://b8u0c0ovjy1xr" path="res://scripts/player/components/mouse_capture.gd" id="1_0cbmc"]
+
+[node name="MouseCapture" type="Node3D"]
+script = ExtResource("1_0cbmc")
+debug = true

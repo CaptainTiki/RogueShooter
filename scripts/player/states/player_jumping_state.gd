@@ -1,0 +1,11 @@
+#player_jumping_state.gd
+extends PlayerState
+class_name PlayerJumpingState
+
+
+func _on_jumping_state_physics_processing(delta: float) -> void:
+	pass # Replace with function body.
+
+
+func _on_jumping_state_entered() -> void:
+	pass # Replace with function body.
