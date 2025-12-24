@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://bpipnwggji687"]
+
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_6y33j"]
+[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="2_faln4"]
+
+[resource]
+script = ExtResource("2_faln4")
+fgd_name = "RogueFPS"
+base_fgd_files = Array[Resource]([ExtResource("1_6y33j")])
+metadata/_custom_type_script = "uid://drlmgulwbjwqu"

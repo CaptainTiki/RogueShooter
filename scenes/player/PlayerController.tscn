@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://db1wudsjtmdvw"]
+[gd_scene load_steps=25 format=3 uid="uid://db1wudsjtmdvw"]
 
 [ext_resource type="PackedScene" uid="uid://d06jv8qr3v4wg" path="res://scenes/player/components/camera_controller.tscn" id="1_etyb6"]
 [ext_resource type="Script" uid="uid://bjhxv18wjfjrm" path="res://scripts/player/player_controller.gd" id="1_h2fbm"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_jsc2v"]
 [ext_resource type="PackedScene" uid="uid://dggwg41jgwgxq" path="res://scenes/player/components/mouse_capture.tscn" id="3_23doe"]
 [ext_resource type="Script" uid="uid://xmjhyo7pc3lh" path="res://scripts/player/components/player_state_machine.gd" id="4_6ev1f"]
+[ext_resource type="PackedScene" uid="uid://c837n7to40sud" path="res://scenes/player/components/step_handler.tscn" id="5_jlpny"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_tfrk6"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="6_wtdo7"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="7_jsc2v"]
@@ -29,7 +30,7 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e86ib"]
 
-[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects")]
+[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects", "step_handler")]
 collision_mask = 256
 safe_margin = 0.01
 script = ExtResource("1_h2fbm")
@@ -40,6 +41,7 @@ crouch_collision = NodePath("CrouchCollision")
 crouch_check = NodePath("CrouchCheck")
 interaction_raycast = NodePath("Components/CameraController/Camera3D/Interaction_Raycast")
 camera_effects = NodePath("Components/CameraController/Camera3D")
+step_handler = NodePath("Components/StepHandler")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_jsc2v")]
 anchors_preset = 0
@@ -83,6 +85,9 @@ component_mouse_capture = NodePath("../MouseCapture")
 
 [node name="Camera3D" parent="Components/CameraController" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")
+
+[node name="StepHandler" parent="Components" node_paths=PackedStringArray("player") instance=ExtResource("5_jlpny")]
+player = NodePath("../..")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("5_tfrk6")

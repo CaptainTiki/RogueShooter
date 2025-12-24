@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c837n7to40sud"]
+
+[ext_resource type="Script" uid="uid://2pxslpi1tp4d" path="res://scripts/player/components/step_climber.gd" id="1_xuig4"]
+
+[node name="StepHandler" type="Node3D"]
+script = ExtResource("1_xuig4")

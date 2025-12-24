@@ -11,6 +11,7 @@ class_name PlayerController
 @export var crouch_check : ShapeCast3D
 @export var interaction_raycast : RayCast3D
 @export var camera_effects : CameraEffects
+@export var step_handler : StepHandlerComponent
 @export_category("Easing")
 @export var acceleration : float = 0.2
 @export var deceleration : float = 0.5
@@ -29,11 +30,16 @@ var _movement_velocity : Vector3 = Vector3.ZERO
 var _sprint_modifier : float = 0.0
 var _crouch_modifier : float = 0.0
 var current_fall_velocity : float
+var previous_velocity : Vector3
 
 func _physics_process(delta: float) -> void:
+	previous_velocity = velocity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+	
+	if is_on_floor():
+		step_handler.handle_step_climbing()
+	
 	_input_dir = Input.get_vector("move_left", "move_right", "move_fwd", "move_back")
 	var speed = default_speed + _sprint_modifier + _crouch_modifier
 	var current_velocity : Vector2 = Vector2(_movement_velocity.x, _movement_velocity.z)
@@ -47,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	velocity = _movement_velocity
 	
 	move_and_slide()
+	step_handler.handle_step_climbing()
 	
 	if debug:
 		print("Player Velocity: ", velocity)
@@ -80,3 +87,6 @@ func check_fall_speed() -> bool:
 	else:
 		current_fall_velocity = 0.0
 		return false
+
+func get_input_direction() -> Vector2:
+	return _input_dir
