@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5ohy0dqgbnwx"
-path.s3tc="res://.godot/imported/texture_08.png-eb3e1c9210918f8ff7c07f661758605e.s3tc.ctex"
+uid="uid://dwnol6lua15v8"
+path.s3tc="res://.godot/imported/light_lamppost_0.png-282d0555ac0c617acbfcaeb10bc88e24.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "1a60cb5952155bd85563d5761655b7b8"
+}
 
 [deps]
 
-source_file="res://trenchbroom/textures/Orange/texture_08.png"
-dest_files=["res://.godot/imported/texture_08.png-eb3e1c9210918f8ff7c07f661758605e.s3tc.ctex"]
+source_file="res://trenchbroom/models/light_lamppost_0.png"
+dest_files=["res://.godot/imported/light_lamppost_0.png-282d0555ac0c617acbfcaeb10bc88e24.s3tc.ctex"]
 
 [params]
 

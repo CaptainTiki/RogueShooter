@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://c1rpwnxiu01ur"]
+
+[ext_resource type="Script" uid="uid://ldfqjtq0br35" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_fx2nu"]
+[ext_resource type="PackedScene" uid="uid://cyrj7kl6mnwyt" path="res://scenes/props/lamppost.tscn" id="1_klr5c"]
+
+[resource]
+script = ExtResource("1_fx2nu")
+target_map_editor = 1
+scene_file = ExtResource("1_klr5c")
+classname = "light_lamppost"
+description = "Lamp Post"
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "\"trenchbroom/models/light_lamppost.glb\"",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+metadata/_custom_type_script = "uid://ldfqjtq0br35"

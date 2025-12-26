@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
+[func_godot]
+
+model_point_class_save_path="trenchbroom/models"
+
 [global_group]
 
 player=""
@@ -99,6 +103,7 @@ reload={
 
 [layer_names]
 
+3d_render/layer_6="testlayer"
 3d_physics/layer_1="Player"
 3d_physics/layer_9="Terrain"
 3d_physics/layer_10="Object"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=2 format=3 uid="uid://dn3ogp2xpkxn4"]
+
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_71ae7"]
+
+[resource]
+script = ExtResource("1_71ae7")
+classname = "func_light"
+node_class = "OmniLight3D"
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"
