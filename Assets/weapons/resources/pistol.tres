@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://c1hxmgd15itfc"]
+
+[ext_resource type="Script" uid="uid://dgjai5nd2byfk" path="res://assets/weapons/scripts/weapon.gd" id="1_580d7"]
+[ext_resource type="PackedScene" uid="uid://dncfsyim5upks" path="res://assets/weapons/blaster-a.glb" id="2_wt4ci"]
+
+[resource]
+script = ExtResource("1_580d7")
+weapon_model = ExtResource("2_wt4ci")
+metadata/_custom_type_script = "uid://dgjai5nd2byfk"
