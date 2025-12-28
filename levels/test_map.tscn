@@ -1,20 +1,24 @@
-[gd_scene load_steps=14 format=4 uid="uid://dm1qn6wrhem5"]
+[gd_scene load_steps=15 format=4 uid="uid://dm1qn6wrhem5"]
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_6eklp"]
 [ext_resource type="Resource" uid="uid://iqhvqhknp6fq" path="res://trenchbroom/rogue_fps_map_settings.tres" id="2_ask3y"]
-[ext_resource type="Material" uid="uid://b5t6iii67anu" path="res://trenchbroom/textures/Dark/texture_01.tres" id="3_ehwo5"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_hulg4"]
 [ext_resource type="Script" uid="uid://cn8gueugy0hq2" path="res://scripts/environment/moving_platform.gd" id="4_u3ffk"]
-[ext_resource type="Material" uid="uid://b22we83pkycpa" path="res://trenchbroom/textures/Orange/texture_08.tres" id="5_3huin"]
 [ext_resource type="PackedScene" uid="uid://cyrj7kl6mnwyt" path="res://scenes/props/lamppost.tscn" id="6_lki8d"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mtm4k"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3ffk"]
+albedo_texture = ExtResource("3_hulg4")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3huin"]
 _surfaces = [{
 "aabb": AABB(-12.26001, -0.5001221, -13.5, 32.76001, 12.000122, 31.5),
-"attribute_data": PackedByteArray("AgAQvgAAgLwAAIA+AACAvAAAgD4ACIA8AgAQvgAIgDwAAFA+AAiAPAAAEL4ACIA8AAAQvgAAgLwAAFA+AACAvAAAUL4AAIA+AABQvgIAEL4AABA+AgAQvgAAED4AAIA+AABQPgAAgD4AABC+AACAPgAAEL4CABC+AABQPgIAEL4AAFC+AACAvAAAED4AAIC8AAAQPgAIgDwAAFC+AAiAPAIAED4ACIA8AACAvgAIgDwAAIC+AACAvAIAED4AAIC8AAAQPgIAEL4AABA+AACAPgAAUL4AAIA+AABQvgIAEL4AAFA+CABAvQAAUD7I//+8AAAQvsj//7wAABC+CABAvQAAgL4IAEC9AgAQPggAQL0CABA+yP//vAAAgL7I//+8AACAPggAQL0AAIA+yP//vAIAEL7I//+8AgAQvggAQL0AABA+CABAvQAAED7I//+8AABQvsj//7wAAFC+CABAvQAAUD4CABC+AABQPgAAgD4AABC+AACAPgAAEL4CABC+AAAQPgIAEL4AABA+AACAPgAAUL4AAIA+AABQvgIAEL4AAFA+AABAvQAAUD7A//+8AAAQvsD//7wAABC+AABAvQAAgL4AAEC9AgAQPgAAQL0CABA+wP//vAAAgL7A//+8AACAPgAAQL0AAIA+wP//vAIAEL7A//+8AgAQvgAAQL0AABA+AABAvQAAED7A//+8AABQvsD//7wAAFC+AABAvQAAUD4CABC+AABQPgAAgD4AABC+AACAPgAAEL4CABC+AAAQPgAAQL0AABA+wP//vAAAUL7A//+8AABQvgAAQL0AAFC+AACAPgAAUL4AABC+AAAQPgAAEL4AABA+AACAPgAAgL7A//+8AACAvgAAQL0AABA+AABAvQAAED7A//+8AACAPsD//7wAABC+wP//vAAAEL4AAEC9AACAPgAAQL0AABC+AACAPgAAEL4AABC+AABQPgAAEL4AAFA+AACAPgAAUD4AAEC9AABQPsD//7wAABC+wP//vAAAEL4AAEC9"),
+"attribute_data": PackedByteArray("AgAQwAAAgL4AAIBAAACAvgAAgEAACIA+AgAQwAAIgD4AAFBAAAiAPgAAEMAACIA+AAAQwAAAgL4AAFBAAACAvgAAUMAAAIBAAABQwAIAEMAAABBAAgAQwAAAEEAAAIBAAABQQAAAgEAAABDAAACAQAAAEMACABDAAABQQAIAEMAAAFDAAACAvgAAEEAAAIC+AAAQQAAIgD4AAFDAAAiAPgIAEEAACIA+AACAwAAIgD4AAIDAAACAvgIAEEAAAIC+AAAQQAIAEMAAABBAAACAQAAAUMAAAIBAAABQwAIAEMAAAFBACABAvwAAUEDI//++AAAQwMj//74AABDACABAvwAAgMAIAEC/AgAQQAgAQL8CABBAyP//vgAAgMDI//++AACAQAgAQL8AAIBAyP//vgIAEMDI//++AgAQwAgAQL8AABBACABAvwAAEEDI//++AABQwMj//74AAFDACABAvwAAUEACABDAAABQQAAAgEAAABDAAACAQAAAEMACABDAAAAQQAIAEMAAABBAAACAQAAAUMAAAIBAAABQwAIAEMAAAFBAAABAvwAAUEDA//++AAAQwMD//74AABDAAABAvwAAgMAAAEC/AgAQQAAAQL8CABBAwP//vgAAgMDA//++AACAQAAAQL8AAIBAwP//vgIAEMDA//++AgAQwAAAQL8AABBAAABAvwAAEEDA//++AABQwMD//74AAFDAAABAvwAAUEACABDAAABQQAAAgEAAABDAAACAQAAAEMACABDAAAAQQAAAQL8AABBAwP//vgAAUMDA//++AABQwAAAQL8AAFDAAACAQAAAUMAAABDAAAAQQAAAEMAAABBAAACAQAAAgMDA//++AACAwAAAQL8AABBAAABAvwAAEEDA//++AACAQMD//74AABDAwP//vgAAEMAAAEC/AACAQAAAQL8AABDAAACAQAAAEMAAABDAAABQQAAAEMAAAFBAAACAQAAAUEAAAEC/AABQQMD//74AABDAwP//vgAAEMAAAEC/"),
 "format": 34359742487,
 "index_count": 144,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8AMAAxADIAMAAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsAPAA9AD4APAA+AD8AQABBAEIAQABCAEMARABFAEYARABGAEcASABJAEoASABKAEsATABNAE4ATABOAE8AUABRAFIAUABSAFMAVABVAFYAVABWAFcAWABZAFoAWABaAFsAXABdAF4AXABeAF8A"),
-"material": ExtResource("3_ehwo5"),
+"material": SubResource("StandardMaterial3D_u3ffk"),
 "name": "Dark/texture_01",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -22,26 +26,31 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AACkQQAAAD8AACjBAAAwwQAAAD8AACjBAAAwwQAIAL8AACjBAACkQQAIAL8AACjBAAAwwQAIAL8AAIhBAAAwwQAIAL8AACjBAAAwwQAAAD8AACjBAAAwwQAAAD8AAIhBAAAwwQAAAL8AAIhBAACkQQAAAL8AAIhBAACkQQAAAL8AACjBAAAwwQAAAL8AACjBAAAwwQAAAD8AAIhBAAAwwQAAAD8AACjBAACkQQAAAD8AACjBAACkQQAAAD8AAIhBAACkQQAAAD8AAIhBAACkQQAAAD8AACjBAACkQQAIAL8AACjBAACkQQAIAL8AAIhBAACkQQAIAL8AAIhBAAAwwQAIAL8AAIhBAAAwwQAAAD8AAIhBAACkQQAAAD8AAIhBAACkQQAAOEH2KDzBAAAwwQAAOEH2KDzBAAAwwQAAAD/2KDzBAACkQQAAAD/2KDzBAAAwwQAAAD8AACjBAAAwwQAAAD8AKTzBAAAwwQAAOEEAKTzBAAAwwQAAOEEAACjBAAAwwQAAAD8AACjBAACkQQAAAD8AACjBAACkQQAAAD8AKTzBAAAwwQAAAD8AKTzBAAAwwQAAOEEAACjBAAAwwQAAOEEAKTzBAACkQQAAOEEAKTzBAACkQQAAOEEAACjBAACkQQAAOEEAACjBAACkQQAAOEEAKTzBAACkQQAAAD8AKTzBAACkQQAAAD8AACjBAACkQQAAAD8AACjBAAAwwQAAAD8AACjBAAAwwQAAOEEAACjBAACkQQAAOEEAACjBAACkQQAAOEGF64VBAAAwwQAAOEGF64VBAAAwwQAAAD+F64VBAACkQQAAAD+F64VBAAAwwQAAAD8AAJBBAAAwwQAAAD+A64VBAAAwwQAAOEGA64VBAAAwwQAAOEEAAJBBAAAwwQAAAD8AAJBBAACkQQAAAD8AAJBBAACkQQAAAD+A64VBAAAwwQAAAD+A64VBAAAwwQAAOEEAAJBBAAAwwQAAOEGA64VBAACkQQAAOEGA64VBAACkQQAAOEEAAJBBAACkQQAAOEEAAJBBAACkQQAAOEGA64VBAACkQQAAAD+A64VBAACkQQAAAD8AAJBBAACkQQAAAD8AAJBBAAAwwQAAAD8AAJBBAAAwwQAAOEEAAJBBAACkQQAAOEEAAJBBAAAwwQAAOEEAAFjBAClEwQAAOEEAAFjBAClEwQAAAD8AAFjBAAAwwQAAAD8AAFjB9ihEwQAAAD8AAJBB9ihEwQAAAD8AAFjB9ihEwQAAOEEAAFjB9ihEwQAAOEEAAJBBAClEwQAAAD8AAJBBAAAwwQAAAD8AAJBBAAAwwQAAAD8AAFjBAClEwQAAAD8AAFjBAClEwQAAOEEAAJBBAClEwQAAOEEAAFjBAAAwwQAAOEEAAFjBAAAwwQAAOEEAAJBBAAAwwQAAOEEAAJBBAAAwwQAAOEEAAFjBAAAwwQAAAD8AAFjBAAAwwQAAAD8AAJBBAAAwwQAAAD8AAJBBAClEwQAAAD8AAJBBAClEwQAAOEEAAJBBAAAwwQAAOEEAAJBB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+///////9//////////3//////////f/////////9///8AAP9//38AgAAA/3//fwCAAAD/f/9/AIAAAP9//38AgP9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7////9//3///////3//f///////f/9///////9//3////9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA//////9//////////3//////////f/////////9///8AAP9//38AgAAA/3//fwCAAAD/f/9/AIAAAP9//38AgP9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7////9//3///////3//f///////f/9///////9//3////9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA//////9//////////3//////////f/////////9///8AAP9//3///wAA/3//f///AAD/f/9///8AAP9//3////9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//38AgP///3//fwCA////f/9/AID///9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_en8i3"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lki8d"]
 points = PackedVector3Array(20.5, 0.5, 17, 20.5, -0.5, 17, -11, 0.5, 17, -11, -0.5, 17, 20.5, 0.5, -10.5, 20.5, -0.5, -10.5, -11, 0.5, -10.5, -11, -0.5, -10.5)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tih6m"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mtm4k"]
 points = PackedVector3Array(20.5, 11.5, -10.5, 20.5, 0.5, -10.5, -11, 11.5, -10.5, -11, 0.5, -10.5, 20.5, 11.5, -11.76, 20.5, 0.5, -11.76, -11, 11.5, -11.76, -11, 0.5, -11.76)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_akivl"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_en8i3"]
 points = PackedVector3Array(20.5, 11.5, 18, 20.5, 0.5, 18, -11, 11.5, 18, -11, 0.5, 18, 20.5, 11.5, 16.74, 20.5, 0.5, 16.74, -11, 11.5, 16.74, -11, 0.5, 16.74)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wk7ot"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tih6m"]
 points = PackedVector3Array(-11, 11.5, 18, -11, 0.5, 18, -12.26, 11.5, 18, -12.26, 0.5, 18, -11, 11.5, -13.5, -11, 0.5, -13.5, -12.26, 11.5, -13.5, -12.26, 0.5, -13.5)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ln2pj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akivl"]
+albedo_texture = ExtResource("3_hulg4")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wk7ot"]
 _surfaces = [{
 "aabb": AABB(-1.25, -0.25, -1.1636362, 2.5, 0.5, 2.3272727),
-"attribute_data": PackedByteArray("AAAQPgAAScAAABA+AAAwwAAAUL4AADDAAABQvgAAScAAAFA+AABAvQAAUD6A7388AAAQvoDvfzwAABC+AABAvQAAMEAAAEC9AABJQAAAQL0AAElAgO9/PAAAMECA7388AAAwwAAAQL0AADDAgO9/PAAAScCA7388AABJwAAAQL0AABA+AABAvQAAED6A7388AABQvoDvfzwAAFC+AABAvQAAUD4AAEnAAABQPgAAMMAAABC+AAAwwAAAEL4AAEnA"),
+"attribute_data": PackedByteArray("AAAQQAAAScIAABBAAAAwwgAAUMAAADDCAABQwAAAScIAAFBAAABAvwAAUECA738+AAAQwIDvfz4AABDAAABAvwAAMEIAAEC/AABJQgAAQL8AAElCgO9/PgAAMEKA738+AAAwwgAAQL8AADDCgO9/PgAAScKA738+AABJwgAAQL8AABBAAABAvwAAEECA738+AABQwIDvfz4AAFDAAABAvwAAUEAAAEnCAABQQAAAMMIAABDAAAAwwgAAEMAAAEnC"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
-"material": ExtResource("5_3huin"),
+"material": SubResource("StandardMaterial3D_akivl"),
 "name": "Orange/texture_08",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -49,7 +58,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AACgPwAAgD4I8pS/AACgvwAAgD4I8pS/AACgvwAAgL4I8pS/AACgPwAAgL4I8pS/AACgvwAAgL4K8pQ/AACgvwAAgL487ZS/AACgvwAAgD487ZS/AACgvwAAgD4K8pQ/AACgvwAAgL4K8pQ/AACgPwAAgL4K8pQ/AACgPwAAgL487ZS/AACgvwAAgL487ZS/AACgvwAAgD4K8pQ/AACgvwAAgD487ZS/AACgPwAAgD487ZS/AACgPwAAgD4K8pQ/AACgPwAAgD4K8pQ/AACgPwAAgD487ZS/AACgPwAAgL487ZS/AACgPwAAgL4K8pQ/AACgPwAAgL4K8pQ/AACgvwAAgL4K8pQ/AACgvwAAgD4K8pQ/AACgPwAAgD4K8pQ///////9//////////3//////////f/////////9///8AAP9//38AgAAA/3//fwCAAAD/f/9/AIAAAP9//38AgP9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7////9//3///////3//f///////f/9///////9//3////9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mbk63"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ln2pj"]
 points = PackedVector3Array(1.25, 0.25, 1.1636364, 1.25, -0.25, 1.1636364, -1.25, 0.25, 1.1636364, -1.25, -0.25, 1.1636364, 1.25, 0.25, -1.1636362, 1.25, -0.25, -1.1636362, -1.25, 0.25, -1.1636362, -1.25, -0.25, -1.1636362)
 
 [node name="TestMap" type="Node3D"]
@@ -61,23 +70,22 @@ map_settings = ExtResource("2_ask3y")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
-collision_layer = 256
 collision_mask = 0
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
-mesh = SubResource("ArrayMesh_mtm4k")
+mesh = SubResource("ArrayMesh_3huin")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_en8i3")
+shape = SubResource("ConvexPolygonShape3D_lki8d")
 
 [node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_tih6m")
+shape = SubResource("ConvexPolygonShape3D_mtm4k")
 
 [node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_akivl")
+shape = SubResource("ConvexPolygonShape3D_en8i3")
 
 [node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_wk7ot")
+shape = SubResource("ConvexPolygonShape3D_tih6m")
 
 [node name="entity_1_func_movingplatform" type="AnimatableBody3D" parent="FuncGodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 0.25, -3.9363637)
@@ -86,10 +94,10 @@ collision_mask = 0
 script = ExtResource("4_u3ffk")
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_1_func_movingplatform"]
-mesh = SubResource("ArrayMesh_ln2pj")
+mesh = SubResource("ArrayMesh_wk7ot")
 
 [node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_1_func_movingplatform"]
-shape = SubResource("ConvexPolygonShape3D_mbk63")
+shape = SubResource("ConvexPolygonShape3D_ln2pj")
 
 [node name="entity_2_func_light" type="OmniLight3D" parent="FuncGodotMap"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.75, 5.25, -10.25)
