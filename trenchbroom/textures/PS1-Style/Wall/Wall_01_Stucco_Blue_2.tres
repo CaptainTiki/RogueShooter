@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bc2u7jlpwb3lg"]
+
+[ext_resource type="Texture2D" uid="uid://dhm4l227sfsib" path="res://trenchbroom/textures/PS1-Style/Wall/Wall_01_Stucco_Blue_2.png" id="1_v3ys2"]
+
+[resource]
+albedo_texture = ExtResource("1_v3ys2")
+metallic_specular = 0.0
+texture_filter = 2

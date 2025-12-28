@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bibeowc4r5esf"]
+
+[ext_resource type="Texture2D" uid="uid://dl3dp7l6ie1j1" path="res://trenchbroom/textures/PS1-Style/Wood/Wood_Planks_04_Vertical_1.png" id="1_wyb1l"]
+
+[resource]
+albedo_texture = ExtResource("1_wyb1l")
+metallic_specular = 0.0
+texture_filter = 2

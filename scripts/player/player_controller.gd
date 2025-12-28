@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	velocity = _movement_velocity
 	
 	move_and_slide()
-	step_handler.handle_step_climbing()
 	
 	if debug:
 		print("Player Velocity: ", velocity)

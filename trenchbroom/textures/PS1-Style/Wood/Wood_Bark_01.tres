@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bwg2djoutd4wv"]
+
+[ext_resource type="Texture2D" uid="uid://blonvf3dcnc5k" path="res://trenchbroom/textures/PS1-Style/Wood/Wood_Bark_01.png" id="1_6ppbe"]
+
+[resource]
+albedo_texture = ExtResource("1_6ppbe")
+metallic_specular = 0.0
+texture_filter = 2

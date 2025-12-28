@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://idiqvb4myqfx"]
+
+[ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_st37p"]
+[ext_resource type="PackedScene" uid="uid://cmlb0ieo7pshv" path="res://levels/backyard_map.tscn" id="2_st37p"]
+[ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="3_wyvpd"]
+
+[node name="BackyardLevel" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_st37p")]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="BackyardMap" parent="Geometry" instance=ExtResource("2_st37p")]
+
+[node name="PlayerController" parent="." instance=ExtResource("3_wyvpd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 5.980062, 0)
