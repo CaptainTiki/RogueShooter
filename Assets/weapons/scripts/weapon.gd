@@ -10,3 +10,14 @@ class_name Weapon
 
 @export var projectile_scene: PackedScene
 @export var weapon_position: Vector3 = Vector3(0.2, -0.2, -0.3)
+
+@export var rarity : Enums.Rarity = Enums.Rarity.COMMON
+@export var equipped_parts: Dictionary[Enums.PartType, WeaponPart]
+@export var icon : Texture2D
+
+var stats : WeaponStats
+
+func recalculate() -> void:
+	stats = WeaponCalc.calculate_stats(equipped_parts)
+	rarity = WeaponCalc.calc_weapon_rarity(equipped_parts) as Enums.Rarity
+	weapon_name = WeaponCalc.build_name(equipped_parts)

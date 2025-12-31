@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://8k72xkkpjmgs"]
+
+[ext_resource type="Texture2D" uid="uid://do36g76v7qnoo" path="res://icon.svg" id="1_bt5bw"]
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="2_6w23l"]
+
+[resource]
+script = ExtResource("2_6w23l")
+part_name = "Stabilized Short Barrel"
+icon = ExtResource("1_bt5bw")
+part_type = 1
+size = 0
+damage_add = 0.5
+range_add = 4.0
+recoil_add = -0.4
+spread_add = -0.5
+metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

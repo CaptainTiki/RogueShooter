@@ -1,0 +1,161 @@
+#weapon_calc.gd
+extends Node
+class_name WeaponCalc
+
+static var order = [
+	Enums.PartType.RECEIVER,
+	Enums.PartType.BARREL,
+	Enums.PartType.GRIP,
+	Enums.PartType.MAGAZINE,
+	Enums.PartType.OPTIC,
+	Enums.PartType.MUZZLE,
+	Enums.PartType.STOCK,
+	Enums.PartType.FOREGRIP
+	]
+
+
+static func calculate_stats(equipped_parts: Dictionary) -> WeaponStats:
+	var stats : WeaponStats = WeaponStats.new()
+	var total_burst_seperation : float= 0.0
+	var total_shot_interval : float = 0.0
+	
+	for part in equipped_parts.values():
+		if part == null:
+			continue
+		
+		if part is WeaponPart:
+			# additive stats (always apply)
+			stats.damage += part.damage_add
+			stats.range += part.range_add
+			stats.recoil += part.recoil_add
+			stats.ads_speed += part.ads_speed_add
+			stats.spread += part.spread_add
+			stats.ammo_capacity += part.ammo_add
+			stats.reload_speed += part.reload_speed_add
+			stats.fov_amount += part.fov_ammount_add
+			
+			total_shot_interval += part.shot_interval_add
+			total_burst_seperation += part.burst_seperation_add
+			
+			if part.part_type == Enums.PartType.RECEIVER:
+				stats.ammo_type = part.ammo_type
+				stats.trigger_mode = part.trigger_mode
+				stats.burst_per_shot = part.burst_per_shot
+				stats.burst_size = part.burst_size
+				stats.burst_seperation = part.burst_seperation
+				print("part is a reciever, partname is: ", part.part_name)
+				stats.shot_interval = part.shot_interval
+				
+		
+	stats.burst_seperation += total_burst_seperation
+	stats.shot_interval += total_shot_interval
+	
+	#prevent negative ammo, firerate, and burst interval
+	stats.ammo_capacity = max(0.0, stats.ammo_capacity) #stay zero or positive
+	stats.burst_per_shot = max(1.0, stats.burst_per_shot) #always at least 1 round per trigger
+	stats.burst_size = max(1.0, stats.burst_size) #always at least 1 round per trigger
+	stats.burst_seperation = max(0.0, stats.burst_seperation) #zero is ok, for shotgun type
+	stats.shot_interval = max(0.01, stats.shot_interval) #prevent zero
+	
+	return stats
+
+static func calc_weapon_rarity(equipped_parts: Dictionary) -> int:
+	var total : float = 0
+	var count : float = 0
+	
+	for p in equipped_parts.values():
+		if p == null:
+			continue
+		total += int(p.rarity)
+		count += 1
+	
+	if count == 0:
+		return Enums.Rarity.COMMON
+	
+	var avg : float = float(total) / float(count)
+	var result : int = int(floor(avg))
+	
+	# Clamp to valid enum range just in case
+	result = clamp(result, int(Enums.Rarity.COMMON), int(Enums.Rarity.LEGENDARY))
+	return result
+
+static func build_name(parts: Dictionary) -> String:
+	# --- Helper: find receiver
+	var receiver = null
+	for p in parts.values():
+		if p == null:
+			continue
+		if p.part_type == Enums.PartType.RECEIVER:
+			receiver = p
+			break
+	
+	var core : String = ""
+	if receiver != null:
+		core = receiver.name_core.strip_edges()
+	if core == "":
+		core = "Blaster" # fallback so you never get empty names
+	
+	# Your deterministic “slot priority” orders
+	var prefix_order : Array[Enums.PartType] = [
+		Enums.PartType.STOCK,
+		Enums.PartType.GRIP,
+		Enums.PartType.OPTIC,
+		Enums.PartType.MUZZLE,
+		Enums.PartType.FOREGRIP,
+		Enums.PartType.BARREL,
+	]
+	
+	var descriptor_order : Array[Enums.PartType] = [
+		Enums.PartType.BARREL,
+		Enums.PartType.FOREGRIP,
+		Enums.PartType.MUZZLE,
+		Enums.PartType.OPTIC,
+	]
+	
+	var suffix_order : Array[Enums.PartType] = [
+		Enums.PartType.MAGAZINE,
+		Enums.PartType.MUZZLE,
+		Enums.PartType.OPTIC,
+		Enums.PartType.STOCK,
+		Enums.PartType.GRIP,
+	]
+	
+	var prefix : String = first_token(parts, &"name_prefix", prefix_order)
+	var descriptor : String = first_token(parts, &"name_descriptor", descriptor_order)
+	var suffix : String = first_token(parts, &"name_suffix", suffix_order)
+	
+	# --- Rarity label (only Rare+), calculated from parts
+	var rarity : int = calc_weapon_rarity(parts)
+	var rarity_label : String = ""
+	match rarity:
+		Enums.Rarity.RARE:
+			rarity_label = "Mk II"
+		Enums.Rarity.EPIC:
+			rarity_label = "EX"
+		Enums.Rarity.LEGENDARY:
+			rarity_label = "Prime"
+		_:
+			rarity_label = ""  # Common/Uncommon show nothing
+	
+	# --- Assemble in your chosen order
+	var words: Array[String] = []
+	if prefix != "": words.append(prefix)
+	if descriptor != "": words.append(descriptor)
+	words.append(core)
+	if suffix != "": words.append(suffix)
+	if rarity_label != "": words.append(rarity_label)
+	
+	return " ".join(words)
+
+# --- Helper: first token in given part-type order for a given field
+static func first_token(parts: Dictionary, field: StringName, type_order: Array) -> String:
+	for t in type_order:
+		for p in parts.values():
+			if p == null:
+				continue
+			if p.part_type != t:
+				continue
+			var v: String = str(p.get(field)).strip_edges()
+			if v != "":
+				return v
+	return ""

@@ -13,3 +13,8 @@ func _on_idle_state_processing(_delta: float) -> void:
 	#Check if ammo is empty
 	if weapon_controller.current_ammo <= 0:
 		weapon_controller.weapon_state_chart.send_event("onEmpty")
+
+
+func _on_idle_state_entered() -> void:
+	print("idle")
+	weapon_controller.camera.set_weapon_decay(false)

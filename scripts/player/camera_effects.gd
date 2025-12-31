@@ -25,13 +25,16 @@ class_name CameraEffects
 @export_subgroup("Damage Kick")
 @export var damage_time: float = 0.3
 @export_subgroup("Weapon Kick")
-@export var weapon_decay: float = 0.5
+@export var weapon_decay: float = 0.15
+@export var weapon_decay_mult : float = 3
 @export_subgroup("Head Bob")
 @export_range(0.0, 0.10, 0.001) var bob_pitch: float = 0.05
 @export_range(0.0, 0.10, 0.001) var bob_roll: float = 0.025
 @export_range(0.0, 0.04, 0.001) var bob_up: float = 0.005
 @export_range(3.0, 8.00, 0.100) var bob_frequency: float = 6.0
 @export_range(0.0, 0.50, 0.05) var bob_magnitude: float = 0.5
+
+var _weapon_firing : bool = false
 
 var _fall_value : float = 0.0
 var _fall_timer : float = 0.0
@@ -103,7 +106,12 @@ func calculate_view_offset(delta):
 	
 	#Weapon Kick
 	if enable_weapon_kick:
-		_weapon_kick_angles = _weapon_kick_angles.move_toward(Vector3.ZERO, weapon_decay * delta)
+		if _weapon_firing:
+			_weapon_kick_angles = _weapon_kick_angles.move_toward(Vector3.ZERO, weapon_decay * delta)
+			#print(weapon_decay * delta)
+		else:
+			_weapon_kick_angles = _weapon_kick_angles.move_toward(Vector3.ZERO, weapon_decay * weapon_decay_mult * delta)
+			#print(weapon_decay * weapon_decay_mult * delta)
 		angles += _weapon_kick_angles
 	
 	position = offset
@@ -152,3 +160,6 @@ func update_screen_shake(alpha: float, amount: float) -> void:
 	var current_shake_amount = amount * (1.0 - alpha)
 	h_offset = randf_range(-current_shake_amount, current_shake_amount)
 	v_offset = randf_range(-current_shake_amount, current_shake_amount)
+
+func set_weapon_decay(active : bool) -> void:
+	_weapon_firing = active

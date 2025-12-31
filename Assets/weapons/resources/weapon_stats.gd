@@ -5,8 +5,11 @@ class_name WeaponStats
 @export var damage: float = 0.0
 @export var range: float = 0.0
 @export var recoil: float = 0.0
-@export var ads_speed: float = 0.0
 @export var spread: float = 0.0
+
+@export_category("Aiming / Sights")
+@export var ads_speed: float = 0.0
+@export var fov_amount : float = 0.0
 
 @export_category("Ammo & Reload")
 @export var ammo_type: Enums.AmmoType = Enums.AmmoType.ANY
@@ -15,11 +18,7 @@ class_name WeaponStats
 
 @export_category("Firing Behavior")
 @export var trigger_mode: Enums.TriggerMode = Enums.TriggerMode.SEMI
-@export var projectiles_per_shot: float = 1
-@export var burst_count: float = 1
-@export var ammo_per_projectile: float = 1
-@export var ammo_cost_mult: float = 1.0
-
-@export_category("Timing (seconds)")
-@export var shot_cooldown: float = 0.0
-@export var burst_interval: float = 0.0
+@export var burst_per_shot: float = 1 #5 bursts of 1, with zero sep = shotgun
+@export var burst_size: float = 1 #1 burst per shot, 3 burst size = typical assault rifle
+@export var burst_seperation: float = 0.0 #0 is all at once
+@export var shot_interval: float = 0.0 #time between allowed trigger pulls (or between auto fire)
