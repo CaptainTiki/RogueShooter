@@ -161,74 +161,57 @@ static func first_token(parts: Dictionary, field: StringName, type_order: Array)
 
 ## Returns: Array[Dictionary] where each dictionary describes a unique slot instance.
 static func build_slot_map(weapon: Weapon, max_slots: int = 30) -> Array[Dictionary]:
-	var slots: Array[Dictionary] = []
-	var next_slot_num: int = 0
-
-	# 1) Get all equipped parts
-	var parts: Array = weapon.equipped_parts.values()
-	if parts.is_empty():
-		return slots
-
-	# 2) Sort parts deterministically using WeaponCalc.order and a stable tie-breaker (resource_path)
-	parts.sort_custom(func(a, b):
-		var ia := order.find(a.part_type)
-		var ib := order.find(b.part_type)
+	var out: Array[Dictionary] = []
+	if weapon == null:
+		return out
+	
+	# Add receiver "pseudo-slot" for UI selection
+	var receiver_part: WeaponPart = weapon.parts_by_id.get(weapon.root_part_id, null)
+	if receiver_part != null:
+		out.append({
+			"slot_id": -100,
+			"slot_type": int(Enums.PartType.RECEIVER),
+			"host_part_id": int(weapon.root_part_id),
+			"child_part_id": int(weapon.root_part_id), # receiver is itself
+			"host_part_name": "",
+			"child_part_name": receiver_part.part_name
+		})
+	
+	# Iterate real slot IDs (unique per weapon)
+	var slot_ids: Array[int] = []
+	for sid in weapon.slots_by_id.keys():
+		slot_ids.append(int(sid))
+		
+	# Deterministic order: by your PartType order, then by slot_id
+	slot_ids.sort_custom(func(a, b):
+		var sa: Weapon.SlotRecord = weapon.slots_by_id[a]
+		var sb: Weapon.SlotRecord = weapon.slots_by_id[b]
+		var ia := order.find(sa.slot_type)
+		var ib := order.find(sb.slot_type)
 		if ia != ib:
 			return ia < ib
-		# Fallback stable sort
-		return a.resource_path < b.resource_path
+		return a < b
 	)
-
-	# 3) Receiver "slot 0" convention:
-	var receiver : WeaponPart = _find_receiver(parts)
-	if receiver != null:
-		slots.append({
-			"slot_num": next_slot_num,
-			"slot_type": Enums.PartType.RECEIVER,
-			"host_part": null,
-			"host_part_id": "",
-			"host_slot_index": 0,
-			"filled_part": receiver,
-			"filled_part_id": receiver.resource_path
-		})
-		next_slot_num += 1
-
-	# 4) Build slot instances from each host part’s adds_slots.
-	var host_counters: Dictionary = {} # host_id -> Dictionary(slot_type -> count)
-
-	for host in parts:
-		if next_slot_num >= max_slots:
+	
+	for sid in slot_ids:
+		if out.size() >= max_slots:
 			break
+			
+		var s: Weapon.SlotRecord = weapon.slots_by_id[sid]
+		var host_part: WeaponPart = weapon.parts_by_id.get(s.host_part_id, null)
+		var filled_part: WeaponPart = weapon.parts_by_id.get(s.child_part_id, null) if s.child_part_id != -1 else null
+		
+		out.append({
+			"slot_id": sid,
+			"slot_type": int(s.slot_type),
+			"host_part_id": int(s.host_part_id),
+			"child_part_id": int(s.child_part_id),
+			"host_part_name": (host_part.part_name if host_part != null else ""),
+			"child_part_name": (filled_part.part_name if filled_part != null else "")
+		})
+		
+	return out
 
-		var host_id : int = host.resource_path
-		if not host_counters.has(host_id):
-			host_counters[host_id] = {}
-
-		# Deterministic: process adds_slots in the order stored on the resource.
-		for slot_type in host.adds_slots:
-			if next_slot_num >= max_slots:
-				break
-
-			var per_type: Dictionary = host_counters[host_id]
-			var idx: int = int(per_type.get(slot_type, 0))
-			per_type[slot_type] = idx + 1
-			host_counters[host_id] = per_type
-
-			var filled : WeaponPart = _get_filled_part_for_slot(weapon, next_slot_num)
-
-			slots.append({
-				"slot_num": next_slot_num,
-				"slot_type": slot_type,
-				"host_part": host,
-				"host_part_id": host_id,
-				"host_slot_index": idx,
-				"filled_part": filled,
-				"filled_part_id": (filled.resource_path if filled != null else "")
-			})
-
-			next_slot_num += 1
-
-	return slots
 
 
 # ----------------------------
@@ -245,7 +228,8 @@ static func _get_filled_part_for_slot(weapon: Weapon, slot_num: int) -> Resource
 	if weapon == null:
 		return null
 	
-	if weapon.parts_graph.has(slot_num):
-		return weapon.parts_graph.get(slot_num)
+	if weapon.slots_by_id.has(slot_num):
+		var record : Weapon.SlotRecord = weapon.slots_by_id[slot_num]
+		return weapon.parts_by_id[record.slot_id]
 
 	return null

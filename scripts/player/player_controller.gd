@@ -12,6 +12,7 @@ class_name PlayerController
 @export var interaction_raycast : RayCast3D
 @export var camera_effects : CameraEffects
 @export var step_handler : StepHandlerComponent
+@export var weapon_controller: WeaponController
 @export_category("Easing")
 @export var acceleration : float = 0.2
 @export var deceleration : float = 0.5
@@ -25,6 +26,8 @@ class_name PlayerController
 @export_category("Data Helpers")
 @export var data_relative_velocity : Vector3
 
+@onready var state_chart_debugger: MarginContainer = $StateChartDebugger
+
 var _input_dir : Vector2 = Vector2.ZERO
 var _movement_velocity : Vector3 = Vector3.ZERO
 var _sprint_modifier : float = 0.0
@@ -33,6 +36,10 @@ var _crouch_modifier : float = 0.0
 var current_fall_velocity : float
 var previous_velocity : Vector3
 var ui_lock : bool = false
+
+func _ready() -> void:
+	if not debug:
+		state_chart_debugger.queue_free()
 
 func _physics_process(delta: float) -> void:
 	previous_velocity = velocity

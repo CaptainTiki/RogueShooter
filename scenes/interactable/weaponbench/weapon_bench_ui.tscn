@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctr7ns6gnshdr"]
+[gd_scene load_steps=6 format=3 uid="uid://ctr7ns6gnshdr"]
 
 [ext_resource type="Script" uid="uid://06ga0ydmktd2" path="res://scenes/interactable/weaponbench/weapon_bench_ui.gd" id="1_6dbne"]
+[ext_resource type="PackedScene" uid="uid://b0pd1kpnorygt" path="res://scenes/interactable/weaponbench/wb_weapon_display.tscn" id="2_3wnfg"]
+[ext_resource type="PackedScene" uid="uid://dnc1slm3pt5ls" path="res://scenes/interactable/weaponbench/wb_weapon_stats.tscn" id="3_8f172"]
+[ext_resource type="PackedScene" uid="uid://buldi8s6vsm3k" path="res://scenes/interactable/weaponbench/wb_parts_stats.tscn" id="4_28dcf"]
+[ext_resource type="PackedScene" uid="uid://b2mcdhl2j84de" path="res://scenes/interactable/weaponbench/wb_parts_display.tscn" id="5_wepk4"]
 
 [node name="WeaponBenchUi" type="Control"]
 layout_mode = 3
@@ -21,28 +25,84 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="."]
+[node name="FullscreenMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "WeaponBench UI"
-
-[node name="Exit_bn" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FullscreenMarginContainer"]
+layout_mode = 2
+
+[node name="Bench_Header_MarginContainer" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="FullscreenMarginContainer/VBoxContainer/Bench_Header_MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WeaponBench UI"
+
+[node name="Bench_Main_MarginContainer" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer"]
+layout_mode = 2
+
+[node name="Main_Left_Container_VBox" type="VBoxContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Control" type="Control" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="WbWeaponDisplay" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox/Control" instance=ExtResource("2_3wnfg")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Control2" type="Control" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WbWeaponStats" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox/Control2" instance=ExtResource("3_8f172")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Main_Right_Container_VBox" type="VBoxContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WbPartStats" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control2" instance=ExtResource("4_28dcf")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Control3" type="Control" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="WbPartsDisplay" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control3" instance=ExtResource("5_wepk4")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Bench_Footer_MarginContainer" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Exit_bn" type="Button" parent="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 text = "Exit"
 
-[connection signal="pressed" from="Exit_bn" to="." method="_on_exit_bn_pressed"]
+[connection signal="pressed" from="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/Exit_bn" to="." method="_on_exit_bn_pressed"]

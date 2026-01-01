@@ -78,8 +78,9 @@ func fire_weapon() -> void:
 			
 			if sep > 0.0:
 				await get_tree().create_timer(sep).timeout
-
-	print("Fired! Ammo units:", current_ammo, " | timefired ticks_msec: ", Time.get_ticks_msec())
+				
+	if debug:
+		print("Fired! Ammo units:", current_ammo, " | timefired ticks_msec: ", Time.get_ticks_msec())
 
 func _apply_recoil() -> void:
 	if camera and camera is CameraEffects:

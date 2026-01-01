@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RogueShooter"
-config/version="0.1.10"
+config/version="0.1.11"
 run/main_scene="uid://bgsjypdadiqmh"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://djck0cy48fh5m"

@@ -37,7 +37,7 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e86ib"]
 
-[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects", "step_handler")]
+[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects", "step_handler", "weapon_controller")]
 collision_mask = 256
 safe_margin = 0.01
 script = ExtResource("1_h2fbm")
@@ -49,8 +49,10 @@ crouch_check = NodePath("CrouchCheck")
 interaction_raycast = NodePath("Components/CameraController/Camera3D/Interaction_Raycast")
 camera_effects = NodePath("Components/CameraController/Camera3D")
 step_handler = NodePath("Components/StepHandler")
+weapon_controller = NodePath("Components/WeaponController")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_jsc2v")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

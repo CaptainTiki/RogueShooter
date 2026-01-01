@@ -23,11 +23,9 @@ func _on_cool_down_state_processing(delta: float) -> void:
 
 	#Check for fire input
 	if weapon_controller.current_weapon.stats.trigger_mode == Enums.TriggerMode.AUTO:
-		print("trigger mode")
 		if Input.is_action_pressed("fire") and weapon_controller.can_fire():
 			weapon_controller.weapon_state_chart.send_event("onFiring")
 			return
 			
-	print("sending to idlestate")
 	weapon_controller.weapon_state_chart.send_event("onIdle")
 		

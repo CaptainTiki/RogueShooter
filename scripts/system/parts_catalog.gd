@@ -9,12 +9,8 @@ signal catalog_rebuilt
 	"res://assets/weapons/parts/" # <- change to your actual folder
 ]
 
-# PartType -> Array[WeaponPart]
-var _parts_by_type: Dictionary = {}
-
-# Optional: quick lookup by unique id / resource_path
+var _parts_by_type: Dictionary[Enums.PartType, Array] = {}
 var _parts_by_id: Dictionary = {} # String -> WeaponPart
-
 
 func rebuild_catalog() -> void:
 	_parts_by_type.clear()
@@ -27,8 +23,16 @@ func rebuild_catalog() -> void:
 		_parts_by_type[part_type].sort_custom(_sort_parts)
 
 	emit_signal("catalog_rebuilt")
-	#print(_parts_by_id)
 
+func get_parts_for_type(part_type: Enums.PartType) -> Array[WeaponPart]:
+	var out: Array[WeaponPart] = []
+	if not _parts_by_type.has(part_type):
+		return out
+
+	for p in (_parts_by_type[part_type] as Array):
+		out.append(p as WeaponPart)
+
+	return out
 
 func get_parts(part_type: int) -> Array:
 	# Returns a COPY so callers don't mutate the catalog accidentally
