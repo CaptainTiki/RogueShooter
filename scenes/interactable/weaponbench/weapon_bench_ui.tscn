@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctr7ns6gnshdr"]
+
+[ext_resource type="Script" uid="uid://06ga0ydmktd2" path="res://scenes/interactable/weaponbench/weapon_bench_ui.gd" id="1_6dbne"]
+
+[node name="WeaponBenchUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dbne")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "WeaponBench UI"
+
+[node name="Exit_bn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Exit"
+
+[connection signal="pressed" from="Exit_bn" to="." method="_on_exit_bn_pressed"]

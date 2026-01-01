@@ -29,8 +29,10 @@ var _input_dir : Vector2 = Vector2.ZERO
 var _movement_velocity : Vector3 = Vector3.ZERO
 var _sprint_modifier : float = 0.0
 var _crouch_modifier : float = 0.0
+
 var current_fall_velocity : float
 var previous_velocity : Vector3
+var ui_lock : bool = false
 
 func _physics_process(delta: float) -> void:
 	previous_velocity = velocity

@@ -1,6 +1,7 @@
 extends Node
 class_name WeaponController
 
+@export var debug : bool = false
 @export var camera: CameraEffects
 @export var weapon_model_parent: Node3D
 @export var weapon_state_chart : StateChart
@@ -14,17 +15,18 @@ var current_ammo: float
 
 func _ready() -> void:
 	current_weapon = build_default_pistol()
+	current_weapon.stats = WeaponCalc.calculate_stats(current_weapon)
 	if current_weapon:
 		weapon_stats = current_weapon.stats
 		current_ammo = weapon_stats.ammo_capacity
 		#TODO: spawn weapon models for visual, attatch to hands
 		#spawn_weapon_model()
-	debug_print()
+	#debug_print()
 
 func debug_print()-> void:
 	print("Equipped:", current_weapon.weapon_name,
 	" dmg:", weapon_stats.damage,
-	" range:", weapon_stats.range,
+	" range:", weapon_stats.distance,
 	" ammo:", weapon_stats.ammo_capacity,
 	" burst_per_shot:", weapon_stats.burst_per_shot,
 	" burst_size:", weapon_stats.burst_size,
@@ -105,7 +107,7 @@ func _perform_hitscan() -> void:
 	var offset = camera.global_transform.basis.x * cos(angle) * radius \
 			   + camera.global_transform.basis.y * sin(angle) * radius
 	var spread_dir = (forward + offset).normalized()
-	var to = from + spread_dir * weapon_stats.range
+	var to = from + spread_dir * weapon_stats.distance
 	
 	var query = PhysicsRayQueryParameters3D.create(from, to)
 	var result = space_state.intersect_ray(query)
@@ -131,7 +133,30 @@ func _spawn_impact_marker(position : Vector3) -> void:
 
 
 func build_default_pistol() -> Weapon:
-	var base : Weapon = preload("res://assets/weapons/default_blaster.tres") as Weapon
-	var weap : Weapon = base.duplicate(true) as Weapon
-	weap.recalculate()
-	return weap
+	var receiver: WeaponPart = load("res://assets/weapons/parts/receivers/plain_energy_receiver.tres")
+	var barrel: WeaponPart   = load("res://assets/weapons/parts/barrels/stabilized_short_barrel.tres")
+	var grip: WeaponPart     = load("res://assets/weapons/parts/grips/polymer_pistol_grip.tres")
+	var mag: WeaponPart      = load("res://assets/weapons/parts/magazines/compact_cell_magazine.tres")
+	var optic: WeaponPart    = load("res://assets/weapons/parts/optics/lowprofile_iron_optics.tres")
+
+	var w := Weapon.new()
+	w.initialize_with_receiver(receiver)
+
+	var barrel_slot := w.find_first_open_slot_of_type(Enums.PartType.BARREL)
+	w.add_part_to_slot(barrel_slot, barrel)
+
+	var grip_slot := w.find_first_open_slot_of_type(Enums.PartType.GRIP)
+	w.add_part_to_slot(grip_slot, grip)
+
+	var mag_slot := w.find_first_open_slot_of_type(Enums.PartType.MAGAZINE)
+	w.add_part_to_slot(mag_slot, mag)
+
+	# Optional attachment
+	var optic_slot := w.find_first_open_slot_of_type(Enums.PartType.OPTIC)
+	if optic_slot != -1:
+		w.add_part_to_slot(optic_slot, optic)
+
+	if debug:
+		w.debug_print_graph()
+	#ResourceSaver.save(w, "user://debug_blaster.weapon.tres")
+	return w

@@ -16,5 +16,4 @@ func _on_idle_state_processing(_delta: float) -> void:
 
 
 func _on_idle_state_entered() -> void:
-	print("idle")
 	weapon_controller.camera.set_weapon_decay(false)

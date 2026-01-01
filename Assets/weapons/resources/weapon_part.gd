@@ -19,7 +19,7 @@ class_name WeaponPart
 @export var damage_add: float = 0.0
 @export var shot_interval_add: float = 0.0 # lower is faster "1.0 sec / rounds"
 @export var burst_seperation_add: float = 0.0 # spacing inside burst "1.0 second / rounds"
-@export var range_add: float = 0.0
+@export var distance_add: float = 0.0
 @export var recoil_add: float = 0.0
 @export var ads_speed_add: float = 0.0   # lower = faster aiming
 @export var spread_add: float = 0.0

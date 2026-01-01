@@ -3,7 +3,7 @@ class_name WeaponStats
 
 @export_category("Combat Stats")
 @export var damage: float = 0.0
-@export var range: float = 0.0
+@export var distance: float = 0.0
 @export var recoil: float = 0.0
 @export var spread: float = 0.0
 

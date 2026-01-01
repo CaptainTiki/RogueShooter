@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cru5cesyyodit"]
+
+[ext_resource type="Script" uid="uid://bvja1hdvrr2gf" path="res://scenes/interactable/weaponbench/weapon_bench.gd" id="1_t8f7m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8f7m"]
+albedo_color = Color(0.50980395, 0.37254903, 0.29803923, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tws57"]
+albedo_color = Color(0.81310123, 0.6701729, 0.5940166, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rpb7"]
+albedo_color = Color(0.50980395, 0.37254903, 0.29803923, 1)
+
+[node name="WeaponBench" type="Node3D" groups=["interactable"]]
+script = ExtResource("1_t8f7m")
+debug = true
+
+[node name="MeshInstance" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="MeshInstance"]
+use_collision = true
+collision_layer = 66048
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.050000012)
+size = Vector3(3, 0.1, 1.1)
+material = SubResource("StandardMaterial3D_t8f7m")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, -0.050000027, -0.050000012)
+size = Vector3(0.1, 0.90000004, 1.1)
+material = SubResource("StandardMaterial3D_t8f7m")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, -0.050000027, -0.050000012)
+size = Vector3(0.1, 0.90000004, 1.1)
+material = SubResource("StandardMaterial3D_t8f7m")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.5308957, 2.9802322e-08)
+size = Vector3(1.4, 0.05, 0.8)
+material = SubResource("StandardMaterial3D_tws57")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.84999996, 0.5308957, 2.9802322e-08)
+size = Vector3(1.1, 0.05, 0.8)
+material = SubResource("StandardMaterial3D_tws57")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.55)
+size = Vector3(3, 1, 0.1)
+material = SubResource("StandardMaterial3D_7rpb7")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="MeshInstance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -0.5)
+size = Vector3(3, 0.1, 0.2)
+material = SubResource("StandardMaterial3D_t8f7m")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.73820794, 1.4424548, -0.3839745)
+light_energy = 0.25
+spot_range = 2.137
+spot_attenuation = 0.42
+spot_angle = 64.7
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="MeshInstance"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.840531, 1.4424548, -0.3839745)
+light_energy = 0.25
+spot_range = 2.137
+spot_attenuation = 0.42
+spot_angle = 64.7

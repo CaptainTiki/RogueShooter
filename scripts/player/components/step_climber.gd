@@ -8,8 +8,6 @@ class_name StepHandlerComponent
 @export var surface_threshold : float = 0.3
 @export var step_height : float = 1.35
 
-@onready var debug_ray: DebugRay3D = $DebugRay
-
 var step_status : String
 
 const HEIGHT_BUFFER : float = 0.05

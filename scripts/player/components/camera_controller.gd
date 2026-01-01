@@ -55,6 +55,7 @@ func update_camera_rotation(input : Vector2) -> void:
 func update_camera_height(delta : float, direction: int) -> void:
 	if offset_height >= crouch_offset and offset_height <= DEFAULT_HEIGHT:
 		offset_height = clampf(offset_height + (crouch_speed * direction) * delta, crouch_offset, DEFAULT_HEIGHT)
+
 func smooth_step(height_change : float) -> void:
 	_target_height -= height_change
 	_step_smoothing = true

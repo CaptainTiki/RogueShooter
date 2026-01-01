@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="RogueShooter"
-config/version="0.1.8"
+config/version="0.1.10"
 run/main_scene="uid://bgsjypdadiqmh"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+PartsCatalog="*res://scripts/system/parts_catalog.gd"
 Enums="*res://scripts/system/enums.gd"
 
 [editor_plugins]
@@ -32,6 +33,8 @@ model_point_class_save_path="trenchbroom/models"
 
 player=""
 damageable=""
+interactable=""
+level=""
 
 [input]
 

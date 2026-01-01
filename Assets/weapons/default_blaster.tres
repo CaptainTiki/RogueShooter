@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="1_4p6qq"]
 [ext_resource type="Script" uid="uid://dgjai5nd2byfk" path="res://assets/weapons/scripts/weapon.gd" id="1_74rty"]
-[ext_resource type="Resource" uid="uid://dk5nrv7klmoqs" path="res://assets/weapons/parts/recievers/plain_energy_receiver.tres" id="2_7atcf"]
+[ext_resource type="Resource" uid="uid://dk5nrv7klmoqs" path="res://assets/weapons/parts/receivers/plain_energy_receiver.tres" id="2_4p6qq"]
 [ext_resource type="Resource" uid="uid://c60fnk4kl6tbb" path="res://assets/weapons/parts/magazines/compact_cell_magazine.tres" id="3_debar"]
 [ext_resource type="Resource" uid="uid://btbr47va6p8ki" path="res://assets/weapons/parts/optics/lowprofile_iron_optics.tres" id="4_d3w7x"]
 [ext_resource type="Resource" uid="uid://b2gyv5n8qd21n" path="res://assets/weapons/parts/grips/polymer_pistol_grip.tres" id="5_2iymm"]
@@ -15,7 +15,7 @@ script = ExtResource("1_74rty")
 weapon_name = "Blaster"
 weapon_model = ExtResource("9_8q7it")
 equipped_parts = Dictionary[int, ExtResource("1_4p6qq")]({
-0: ExtResource("2_7atcf"),
+0: ExtResource("2_4p6qq"),
 1: ExtResource("6_i57ld"),
 2: ExtResource("5_2iymm"),
 4: ExtResource("3_debar"),

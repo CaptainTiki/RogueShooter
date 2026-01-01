@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://boueadv328mwd"]
+[gd_scene load_steps=5 format=3 uid="uid://boueadv328mwd"]
 
 [ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_1ykrc"]
 [ext_resource type="PackedScene" uid="uid://dm1qn6wrhem5" path="res://levels/test_map.tscn" id="2_htrvu"]
 [ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="2_ycx7s"]
+[ext_resource type="PackedScene" uid="uid://cru5cesyyodit" path="res://scenes/interactable/weaponbench/weapon_bench.tscn" id="4_6lfjr"]
 
-[node name="PrototypeLevel" type="Node3D"]
+[node name="PrototypeLevel" type="Node3D" groups=["level"]]
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_1ykrc")]
 
@@ -14,3 +15,8 @@
 
 [node name="PlayerController" parent="." instance=ExtResource("2_ycx7s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0948617, 0)
+
+[node name="Interactables" type="Node3D" parent="."]
+
+[node name="WeaponBench" parent="Interactables" instance=ExtResource("4_6lfjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.048688, 1.0097265, -9.894771)
