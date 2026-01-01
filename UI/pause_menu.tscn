@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsblxejye1btb"]
+
+[ext_resource type="Script" uid="uid://c1g1lbxasxi3o" path="res://UI/pause_menu.gd" id="1_ltd3m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ltd3m"]
+font_size = 32
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltd3m")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Paused_Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_ltd3m")
+
+[node name="Resume_bn" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Exit_bn" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume_bn" to="." method="_on_resume_bn_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit_bn" to="." method="_on_exit_bn_pressed"]

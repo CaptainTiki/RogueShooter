@@ -20,18 +20,9 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	match current_mouse_mode:
 		Input.MOUSE_MODE_VISIBLE:
-			if event is InputEventMouseButton:
-				current_mouse_mode = Input.MOUSE_MODE_CAPTURED
-				Input.mouse_mode = current_mouse_mode
-				return
+			pass
 		Input.MOUSE_MODE_CAPTURED:
-			if Input.is_action_just_pressed("ui_cancel"):
-				current_mouse_mode = Input.MOUSE_MODE_VISIBLE
-				Input.mouse_mode = current_mouse_mode
-				return
-			
 			_capture_mouse = ( event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED )
-
 				
 			if _capture_mouse:
 				_mouse_input.x += -event.screen_relative.x * mouse_sensitivity

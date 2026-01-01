@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://boueadv328mwd"]
+[gd_scene load_steps=6 format=3 uid="uid://boueadv328mwd"]
 
 [ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_1ykrc"]
+[ext_resource type="Script" uid="uid://5w6f1bd5hvsy" path="res://levels/level.gd" id="1_qd0o6"]
 [ext_resource type="PackedScene" uid="uid://dm1qn6wrhem5" path="res://levels/test_map.tscn" id="2_htrvu"]
 [ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="2_ycx7s"]
 [ext_resource type="PackedScene" uid="uid://cru5cesyyodit" path="res://scenes/interactable/weaponbench/weapon_bench.tscn" id="4_6lfjr"]
 
 [node name="PrototypeLevel" type="Node3D" groups=["level"]]
+script = ExtResource("1_qd0o6")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_1ykrc")]
 

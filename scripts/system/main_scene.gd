@@ -12,3 +12,6 @@ func _ready() -> void:
 	
 	MainScene.instance = self
 	main_loaded.emit()
+
+func quit_game() -> void:
+	get_tree().quit()

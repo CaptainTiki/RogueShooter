@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://d06eq1wf4ohgs"]
+[gd_scene load_steps=4 format=3 uid="uid://d06eq1wf4ohgs"]
 
 [ext_resource type="Script" uid="uid://dnbqp8bh8wapm" path="res://scripts/system/user_interface.gd" id="1_jqr8t"]
 [ext_resource type="Script" uid="uid://bvwbkvgwijoal" path="res://scripts/ui/reticle_draw.gd" id="2_s3ato"]
+[ext_resource type="PackedScene" uid="uid://dsblxejye1btb" path="res://UI/pause_menu.tscn" id="3_bwudt"]
 
 [node name="UserInterface" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_jqr8t")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -31,3 +33,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="PauseMenu" parent="Screens" instance=ExtResource("3_bwudt")]
+layout_mode = 1

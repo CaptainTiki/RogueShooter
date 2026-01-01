@@ -22,11 +22,11 @@
 [ext_resource type="Script" uid="uid://lwjp17fyjt24" path="res://scripts/player/states/player_airborne_state.gd" id="15_ufi14"]
 [ext_resource type="Script" uid="uid://brcg8toeh6bc1" path="res://scripts/player/states/player_crouching_state.gd" id="16_ufi14"]
 [ext_resource type="Script" uid="uid://ccnopr6dxh8lh" path="res://scripts/player/states/player_jumping_state.gd" id="17_klk5f"]
-[ext_resource type="Script" uid="uid://dc7vout20me2q" path="res://assets/weapons/scripts/weapon_statemachine.gd" id="23_mx0ws"]
-[ext_resource type="Script" uid="uid://dpp545mu0aoe" path="res://assets/weapons/scripts/states/weapon_idle_state.gd" id="24_x4fyg"]
-[ext_resource type="Script" uid="uid://djg486d1k4h8r" path="res://assets/weapons/scripts/states/weapon_firing_state.gd" id="25_1qanr"]
-[ext_resource type="Script" uid="uid://dn6hvj0i7yogw" path="res://assets/weapons/scripts/states/weapon_cooldown_state.gd" id="25_mx0ws"]
-[ext_resource type="Script" uid="uid://q663t1dsij0p" path="res://assets/weapons/scripts/states/weapon_empty_state.gd" id="26_26d1a"]
+[ext_resource type="Script" uid="uid://dc7vout20me2q" path="res://Assets/weapons/scripts/weapon_statemachine.gd" id="23_mx0ws"]
+[ext_resource type="Script" uid="uid://dpp545mu0aoe" path="res://Assets/weapons/scripts/states/weapon_idle_state.gd" id="24_x4fyg"]
+[ext_resource type="Script" uid="uid://djg486d1k4h8r" path="res://Assets/weapons/scripts/states/weapon_firing_state.gd" id="25_1qanr"]
+[ext_resource type="Script" uid="uid://dn6hvj0i7yogw" path="res://Assets/weapons/scripts/states/weapon_cooldown_state.gd" id="25_mx0ws"]
+[ext_resource type="Script" uid="uid://q663t1dsij0p" path="res://Assets/weapons/scripts/states/weapon_empty_state.gd" id="26_26d1a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe3vx"]
 
