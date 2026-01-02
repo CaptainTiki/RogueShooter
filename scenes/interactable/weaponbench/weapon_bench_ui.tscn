@@ -99,10 +99,21 @@ layout_mode = 1
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Exit_bn" type="Button" parent="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Accept_bn" type="Button" parent="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Exit"
+text = "Accept"
 
-[connection signal="pressed" from="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/Exit_bn" to="." method="_on_exit_bn_pressed"]
+[node name="Cancel_bn" type="Button" parent="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Cancel"
+
+[connection signal="pressed" from="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/HBoxContainer/Accept_bn" to="." method="_on_accept_bn_pressed"]
+[connection signal="pressed" from="FullscreenMarginContainer/VBoxContainer/Bench_Footer_MarginContainer/HBoxContainer/Cancel_bn" to="." method="_on_cancel_bn_pressed"]

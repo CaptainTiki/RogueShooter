@@ -7,7 +7,7 @@ class_name WeaponPart
 @export var rarity : Enums.Rarity = Enums.Rarity.COMMON
 @export var icon: Texture2D
 @export var part_type: Enums.PartType
-@export var size: Enums.WeaponSize = Enums.WeaponSize.MEDIUM
+@export var size: Enums.WeaponSize = Enums.WeaponSize.SMALL
 @export var ammo_type : Enums.AmmoType = Enums.AmmoType.ANY
 
 @export_category("Connection Slots")

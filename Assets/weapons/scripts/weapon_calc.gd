@@ -78,10 +78,10 @@ static func calc_weapon_rarity(equipped_parts: Dictionary) -> int:
 	result = clamp(result, int(Enums.Rarity.COMMON), int(Enums.Rarity.LEGENDARY))
 	return result
 
-static func build_name(parts: Dictionary) -> String:
+static func build_name(weap: Weapon) -> String:
 	# --- Helper: find receiver
 	var receiver = null
-	for p in parts.values():
+	for p in weap.parts_by_id.values():
 		if p == null:
 			continue
 		if p.part_type == Enums.PartType.RECEIVER:
@@ -119,12 +119,12 @@ static func build_name(parts: Dictionary) -> String:
 		Enums.PartType.GRIP,
 	]
 	
-	var prefix : String = first_token(parts, &"name_prefix", prefix_order)
-	var descriptor : String = first_token(parts, &"name_descriptor", descriptor_order)
-	var suffix : String = first_token(parts, &"name_suffix", suffix_order)
+	var prefix : String = first_token(weap.parts_by_id, &"name_prefix", prefix_order)
+	var descriptor : String = first_token(weap.parts_by_id, &"name_descriptor", descriptor_order)
+	var suffix : String = first_token(weap.parts_by_id, &"name_suffix", suffix_order)
 	
 	# --- Rarity label (only Rare+), calculated from parts
-	var rarity : int = calc_weapon_rarity(parts)
+	var rarity : int = calc_weapon_rarity(weap.parts_by_id)
 	var rarity_label : String = ""
 	match rarity:
 		Enums.Rarity.RARE:
@@ -211,8 +211,6 @@ static func build_slot_map(weapon: Weapon, max_slots: int = 30) -> Array[Diction
 		})
 		
 	return out
-
-
 
 # ----------------------------
 # Helpers

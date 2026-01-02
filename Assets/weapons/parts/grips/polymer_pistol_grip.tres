@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://b2gyv5n8qd21n"]
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=2 format=3 uid="uid://cnq5upr4supcw"]
 
-[ext_resource type="Texture2D" uid="uid://do36g76v7qnoo" path="res://icon.svg" id="1_1b7os"]
-[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="2_ay3gt"]
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://Assets/weapons/resources/weapon_part.gd" id="1_qcqcj"]
 
 [resource]
-script = ExtResource("2_ay3gt")
+script = ExtResource("1_qcqcj")
 part_name = "Polymer Pistol Grip"
-icon = ExtResource("1_1b7os")
 part_type = 2
-size = 0
-adds_slots = Array[int]([4])
-recoil_add = -0.8
-ads_speed_add = -0.3
-spread_add = -0.2
+recoil_add = -0.2
+ads_speed_add = -0.15
+name_descriptor = "Polymer"
 metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

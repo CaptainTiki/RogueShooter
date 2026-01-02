@@ -7,8 +7,8 @@ var ui_instance: WeaponBenchUI = null
 func _ready() -> void:
 	debug = true
 
-func interact(actor: Node3D) -> void:
-	super.interact(actor)
+func interact(_actor: Node3D) -> void:
+	super.interact(_actor)
 
 	if ui_instance != null and ui_instance.visible:
 		close_ui()
@@ -35,7 +35,7 @@ func open_ui() -> void:
 			if debug:
 				print(" ui_instance is null, after create attempt")
 			return
-
+	
 	ui_instance.open_for(actor, self)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 

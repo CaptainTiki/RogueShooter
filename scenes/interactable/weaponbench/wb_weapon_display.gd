@@ -74,10 +74,6 @@ func _select_slot(slot_id: int) -> void:
 		if c is Button:
 			var is_selected := (c.name == "SlotBtn_%s" % slot_id)
 			c.disabled = is_selected
-			
-	if debug:
-		print("WB_WeaponDisplay selected slot:", slot_id)
-
 	slot_selected.emit(slot_id)
 
 func _find_first_slot_of_type(part_type: Enums.PartType) -> int:

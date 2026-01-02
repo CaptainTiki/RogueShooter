@@ -178,6 +178,41 @@ func find_first_open_slot_of_type(slot_type: Enums.PartType) -> int:
 			return int(sid)
 	return -1
 
+##Remeber to recalc stats after copy
+func clone_weapon_graph() -> Weapon:
+	var w := Weapon.new()
+
+	# Copy exported “identity” fields
+	w.weapon_name = weapon_name
+	w.damage = damage
+	w.max_ammo = max_ammo
+	w.distance = distance
+	w.is_hitscan = is_hitscan
+	w.weapon_model = weapon_model
+	w.projectile_scene = projectile_scene
+	w.weapon_position = weapon_position
+	w.rarity = rarity
+	w.icon = icon
+
+	# Copy runtime graph state
+	w.root_part_id = root_part_id
+	w.next_part_id = next_part_id
+	w.next_slot_id = next_slot_id
+
+	# Deep copy parts_by_id
+	w.parts_by_id = {}
+	for pid in parts_by_id.keys():
+		w.parts_by_id[int(pid)] = parts_by_id[pid]
+
+	# Deep copy slots_by_id
+	w.slots_by_id = {}
+	for sid in slots_by_id.keys():
+		var s: SlotRecord = slots_by_id[sid]
+		var ns := SlotRecord.new(s.slot_id, s.slot_type, s.host_part_id)
+		ns.child_part_id = s.child_part_id
+		w.slots_by_id[int(sid)] = ns
+
+	return w
 
 func debug_print_graph() -> void:
 	print("Parts:", parts_by_id.keys())

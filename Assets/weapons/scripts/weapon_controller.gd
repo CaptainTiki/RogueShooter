@@ -1,6 +1,8 @@
 extends Node
 class_name WeaponController
 
+signal weapon_changed
+
 @export var debug : bool = false
 @export var camera: CameraEffects
 @export var weapon_model_parent: Node3D
@@ -16,9 +18,8 @@ var current_ammo: float
 func _ready() -> void:
 	current_weapon = build_default_pistol()
 	current_weapon.stats = WeaponCalc.calculate_stats(current_weapon)
-	if current_weapon:
-		weapon_stats = current_weapon.stats
-		current_ammo = weapon_stats.ammo_capacity
+	_on_weapon_changed() #do the first setup of the weapon. 
+	weapon_changed.connect(_on_weapon_changed)
 		#TODO: spawn weapon models for visual, attatch to hands
 		#spawn_weapon_model()
 	#debug_print()
@@ -133,12 +134,16 @@ func _spawn_impact_marker(position : Vector3) -> void:
 	get_tree().create_timer(2.0).timeout.connect(marker.queue_free)
 
 
+func _on_weapon_changed() -> void:
+	if current_weapon:
+		weapon_stats = current_weapon.stats
+		current_ammo = weapon_stats.ammo_capacity
+
 func build_default_pistol() -> Weapon:
-	var receiver: WeaponPart = load("res://assets/weapons/parts/receivers/plain_energy_receiver.tres")
-	var barrel: WeaponPart   = load("res://assets/weapons/parts/barrels/stabilized_short_barrel.tres")
-	var grip: WeaponPart     = load("res://assets/weapons/parts/grips/polymer_pistol_grip.tres")
-	var mag: WeaponPart      = load("res://assets/weapons/parts/magazines/compact_cell_magazine.tres")
-	var optic: WeaponPart    = load("res://assets/weapons/parts/optics/lowprofile_iron_optics.tres")
+	var receiver: WeaponPart = load("res://Assets/weapons/parts/receivers/plain_9mm_receiver.tres")
+	var barrel: WeaponPart   = load("res://Assets/weapons/parts/barrels/short_rifled_barrel.tres")
+	var grip: WeaponPart     = load("res://Assets/weapons/parts/grips/polymer_pistol_grip.tres")
+	var mag: WeaponPart      = load("res://Assets/weapons/parts/magazines/standard_9mm_magazine.tres")
 
 	var w := Weapon.new()
 	w.initialize_with_receiver(receiver)
@@ -151,11 +156,6 @@ func build_default_pistol() -> Weapon:
 
 	var mag_slot := w.find_first_open_slot_of_type(Enums.PartType.MAGAZINE)
 	w.add_part_to_slot(mag_slot, mag)
-
-	# Optional attachment
-	var optic_slot := w.find_first_open_slot_of_type(Enums.PartType.OPTIC)
-	if optic_slot != -1:
-		w.add_part_to_slot(optic_slot, optic)
 
 	if debug:
 		w.debug_print_graph()

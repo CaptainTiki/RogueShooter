@@ -53,6 +53,4 @@ func _rebuild() -> void:
 		parts_grid.add_child(btn)
 
 func _on_part_pressed(part: WeaponPart) -> void:
-	if debug:
-		print("WB_PartsDisplay selected part:", part.part_name)
 	part_selected.emit(part)

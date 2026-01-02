@@ -9,7 +9,7 @@ class_name WeaponBenchUI
 @onready var parts_display: WB_PartsDisplay = %WbPartsDisplay
 
 var _slot_map: Array[Dictionary] = []
-var _weapon: Weapon = null
+var _weapon_preview: Weapon = null
 var _selected_slot_id: int = -1
 
 var bench: WeaponBench = null
@@ -26,16 +26,15 @@ func _ready() -> void:
 	if not parts_display.part_highlighted.is_connected(_on_part_highlighted):
 		parts_display.part_highlighted.connect(_on_part_highlighted)
 
-func setup_ui() -> void:	
-	_weapon = actor.weapon_controller.current_weapon
-	_slot_map = WeaponCalc.build_slot_map(_weapon)
-	
-	weapon_display.set_weapon(_weapon, _slot_map)
-	weapon_stats.show_weapon(_weapon)
+func setup_ui() -> void:
+	_slot_map = WeaponCalc.build_slot_map(_weapon_preview)
+	weapon_display.set_weapon(_weapon_preview, _slot_map)
+	weapon_stats.show_weapon(_weapon_preview)
 
 func open_for(player: Node3D, _bench: WeaponBench) -> void:
-	if player is PlayerController:
-		actor = player as PlayerController
+	actor = player as PlayerController
+	_weapon_preview = actor.weapon_controller.current_weapon.clone_weapon_graph()
+	_weapon_preview.stats = WeaponCalc.calculate_stats(_weapon_preview)
 	bench = _bench
 	setup_ui()
 	visible = true
@@ -67,15 +66,14 @@ func _on_part_highlighted(part: WeaponPart) -> void:
 	part_stats.show_part(part)
 
 func _on_part_selected(part: WeaponPart) -> void:
-	print("on part selected")
 	if part == null:
 		return
-	if _weapon == null:
+	if _weapon_preview == null:
 		return
 	if _selected_slot_id == -1:
 		return
 
-	# Receiver pseudo-slot special case (if you kept slot_id = -100)
+	# Receiver pseudo-slot special case
 	if _selected_slot_id == -100:
 		print("Receiver swap not MVP yet")
 		return
@@ -84,21 +82,20 @@ func _on_part_selected(part: WeaponPart) -> void:
 	var slot := _get_slot_dict(_selected_slot_id)
 	var existing_child_id := int(slot.get("child_part_id", -1))
 	if existing_child_id != -1:
-		_weapon.remove_part_subtree(existing_child_id)
+		_weapon_preview.remove_part_subtree(existing_child_id)
 
 	# Add new part into slot
-	_weapon.add_part_to_slot(_selected_slot_id, part)
+	_weapon_preview.add_part_to_slot(_selected_slot_id, part)
 
 	# Recalc stats on preview weapon
-	_weapon.stats = WeaponCalc.calculate_stats(_weapon)
+	_weapon_preview.stats = WeaponCalc.calculate_stats(_weapon_preview)
+	_weapon_preview.weapon_name = WeaponCalc.build_name(_weapon_preview)
 
 	# Rebuild slot map and refresh UI
-	_slot_map = WeaponCalc.build_slot_map(_weapon)
-	weapon_display.set_weapon(_weapon, _slot_map)
+	_slot_map = WeaponCalc.build_slot_map(_weapon_preview)
+	weapon_display.set_weapon(_weapon_preview, _slot_map)
 
-	weapon_stats.show_weapon(_weapon)
-
-
+	weapon_stats.show_weapon(_weapon_preview)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
@@ -108,12 +105,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			bench.close_ui()
 		get_viewport().set_input_as_handled()
 
-
-func _on_exit_bn_pressed() -> void:
-	if debug:
-		print("BenchUI: exit button pressed!")
+func _on_cancel_bn_pressed() -> void:
 	if bench != null:
-			bench.close_ui()
-	else:
-		if debug:
-			print("BenchUI: exit button pressed, but bench was null!")
+		_weapon_preview = null
+		_slot_map.clear()
+		bench.close_ui()
+
+
+func _on_accept_bn_pressed() -> void:
+	if actor == null or _weapon_preview == null:
+		return
+	actor.weapon_controller.current_weapon = _weapon_preview
+	actor.weapon_controller.weapon_changed.emit()
+	bench.close_ui()
