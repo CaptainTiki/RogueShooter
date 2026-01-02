@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://buldi8s6vsm3k"]
+[gd_scene load_steps=3 format=3 uid="uid://buldi8s6vsm3k"]
 
 [ext_resource type="Script" uid="uid://gssmljnhcka2" path="res://scenes/interactable/weaponbench/wb_parts_stats.gd" id="1_8pdt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8pdt3"]
+font_size = 12
 
 [node name="WbPartStats" type="Control"]
 layout_mode = 3
@@ -32,3 +35,181 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Part Stats Panel"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 12
+columns = 4
+
+[node name="Damage_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Damage_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Damage_HBox"]
+layout_mode = 2
+text = "Damage: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Damage_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Damage_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Damage_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Ammo_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Ammo_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Ammo_HBox"]
+layout_mode = 2
+text = "Ammo: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Ammo_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Ammo_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Ammo_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "26.0"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Range_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Range_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Range_HBox"]
+layout_mode = 2
+text = "Range: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Range_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Range_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Range_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="FireRate_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FireRate_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/FireRate_HBox"]
+layout_mode = 2
+text = "FireRate: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/FireRate_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FireRate_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/FireRate_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="ReloadSpeed_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Reload_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ReloadSpeed_HBox"]
+layout_mode = 2
+text = "ReloadSpeed: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ReloadSpeed_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Reload_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ReloadSpeed_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Recoil_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Recoil_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Recoil_HBox"]
+layout_mode = 2
+text = "Recoil: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Recoil_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Recoil_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Recoil_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spread_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spread_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Spread_HBox"]
+layout_mode = 2
+text = "Spread: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Spread_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spread_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/Spread_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="ADS_Speed_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ADSSpeed_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Speed_HBox"]
+layout_mode = 2
+text = "ADS Speed: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Speed_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ADSSpeed_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Speed_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="ADS_Zoom_HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ADSZoom_Title_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Zoom_HBox"]
+layout_mode = 2
+text = "ADS Zoom: "
+label_settings = SubResource("LabelSettings_8pdt3")
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Zoom_HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ADSZoom_Value_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/ADS_Zoom_HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12.3"
+label_settings = SubResource("LabelSettings_8pdt3")

@@ -1,6 +1,7 @@
 extends Control
 class_name WB_PartsDisplay
 
+signal part_highlighted(part: WeaponPart)
 signal part_selected(part: WeaponPart)
 
 @export var debug: bool = false
@@ -34,10 +35,20 @@ func _rebuild() -> void:
 
 		var btn := Button.new()
 		btn.text = p.part_name
+		
 		btn.focus_mode = Control.FOCUS_ALL
 
-		# (Optional) show icon later with a custom PartRow scene.
-		btn.pressed.connect(_on_part_pressed.bind(p))
+		btn.mouse_entered.connect(func():
+			part_highlighted.emit(p)
+		)
+
+		btn.focus_entered.connect(func():
+			part_highlighted.emit(p)
+		)
+
+		btn.pressed.connect(func():
+			part_selected.emit(p)
+		)
 
 		parts_grid.add_child(btn)
 
