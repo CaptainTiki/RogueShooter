@@ -70,7 +70,9 @@ func _on_part_selected(part: WeaponPart) -> void:
 		return
 	if _weapon_preview == null:
 		return
-	if _selected_slot_id == -1:
+		
+	if part.part_type == Enums.PartType.RECEIVER:
+		_replace_receiver(part)
 		return
 
 	# Receiver pseudo-slot special case
@@ -97,6 +99,22 @@ func _on_part_selected(part: WeaponPart) -> void:
 
 	weapon_stats.show_weapon(_weapon_preview)
 
+func _replace_receiver(new_receiver: WeaponPart) -> void:
+	# wipe graph
+	_weapon_preview.clear_graph()
+
+	# re-initialize with new receiver
+	_weapon_preview.initialize_with_receiver(new_receiver)
+
+	# recalc stats
+	_weapon_preview.stats = WeaponCalc.calculate_stats(_weapon_preview)
+
+	# rebuild UI
+	_slot_map = WeaponCalc.build_slot_map(_weapon_preview)
+	weapon_display.set_weapon(_weapon_preview, _slot_map)
+	weapon_stats.show_weapon(_weapon_preview)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
 		return
@@ -117,4 +135,6 @@ func _on_accept_bn_pressed() -> void:
 		return
 	actor.weapon_controller.current_weapon = _weapon_preview
 	actor.weapon_controller.weapon_changed.emit()
+	actor.weapon_controller.reload_weapon()
+	#print(actor.weapon_controller.current_weapon.parts_by_id)
 	bench.close_ui()

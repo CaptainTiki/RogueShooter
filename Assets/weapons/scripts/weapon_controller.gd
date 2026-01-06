@@ -52,30 +52,38 @@ func can_fire() -> bool:
 	
 	return current_ammo >= 1
 
+func reload_weapon() -> void:
+	current_ammo = weapon_stats.ammo_capacity
+	print("reloaded weapon")
+	pass
+
 func fire_weapon() -> void:
 	if not can_fire():
 		return
 
 	# snapshot local vars so they don't change mid-burst
 	var bursts_per_trigger : int = int(weapon_stats.burst_per_shot)
-	var bullets_per_burst : int = int(weapon_stats.burst_size)
+	var burst_size : int = int(weapon_stats.burst_size)
+	var multisize : int = int(weapon_stats.multishot)
 	var sep : float = weapon_stats.burst_seperation
 
 	for b in bursts_per_trigger:
-		for i in bullets_per_burst:
+		for i in burst_size:
 			# spend 1 ammo unit per bullet, and return early if we run out during the burst
 			if current_ammo < 1.0:
 				return
 			current_ammo -= 1.0
 
-			# Fire one "bullet"
-			if current_weapon.is_hitscan:
-				_perform_hitscan()
-			else:
-				# spawn projectile later
-				pass
+			# Fire one "shot"
+			for m in multisize:
+				if current_weapon.is_hitscan:
+					_perform_hitscan()
+				else:
+					# spawn projectile later
+					pass
 				
-			_apply_recoil()
+				#TODO: keep track - to reduce recoil per "shot" move this out of the multishot loop
+				_apply_recoil()
 			
 			if sep > 0.0:
 				await get_tree().create_timer(sep).timeout
@@ -138,6 +146,7 @@ func _on_weapon_changed() -> void:
 	if current_weapon:
 		weapon_stats = current_weapon.stats
 		current_ammo = weapon_stats.ammo_capacity
+		print(current_ammo)
 
 func build_default_pistol() -> Weapon:
 	var receiver: WeaponPart = load("res://Assets/weapons/parts/receivers/plain_9mm_receiver.tres")

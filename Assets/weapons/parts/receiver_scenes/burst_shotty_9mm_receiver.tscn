@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dvj4kggo8gkoq"]
+
+[node name="Plain9MmReceiver" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGCombiner3D"]
+size = Vector3(0.05, 0.05, 0.075)
+
+[node name="SlotMarkers" type="Node3D" parent="."]
+
+[node name="Slot_BARREL_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03874603)
+
+[node name="Slot_GRIP_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02546043, 0.03184053)
+
+[node name="Slot_MAGAZINE_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0329139, 0.03393287)
+
+[node name="Slot_OPTIC_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025863305, 0.027863678)

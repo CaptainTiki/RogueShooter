@@ -18,6 +18,7 @@ class_name WeaponStats
 
 @export_category("Firing Behavior")
 @export var trigger_mode: Enums.TriggerMode = Enums.TriggerMode.SEMI
+@export var multishot: float = 1 #how many pellets per "shot"
 @export var burst_per_shot: float = 1 #5 bursts of 1, with zero sep = shotgun
 @export var burst_size: float = 1 #1 burst per shot, 3 burst size = typical assault rifle
 @export var burst_seperation: float = 0.0 #0 is all at once

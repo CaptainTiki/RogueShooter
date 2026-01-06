@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://psfe5obneqau"]
+
+[node name="Extended9mmMag" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.9827712, 0.18482628, 0, -0.18482628, -0.9827712, 0, -0.045323312, 7.5870194e-06)
+radius = 0.01171875
+height = 0.0972168
+sides = 5
+
+[node name="SlotMarkers" type="Node3D" parent="."]

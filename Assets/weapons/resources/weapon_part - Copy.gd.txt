@@ -6,11 +6,11 @@ class_name WeaponPart
 @export_category("Basic Info")
 @export var part_name: String = "Unnamed Part"
 @export var rarity : Enums.Rarity = Enums.Rarity.COMMON
+@export var icon: Texture2D
 @export var part_type: Enums.PartType
 @export var size: Enums.WeaponSize = Enums.WeaponSize.SMALL
 @export var ammo_type : Enums.AmmoType = Enums.AmmoType.ANY
-@export var icon: Texture2D
-@export var scene: PackedScene
+
 @export_category("Connection Slots")
 # What extra slots this part adds (for chaining)
 @export var adds_slots: Array[Enums.PartType] = []
@@ -19,10 +19,7 @@ class_name WeaponPart
 @export_category("Part Stats")
 @export var damage_add: float = 0.0
 @export var shot_interval_add: float = 0.0 # lower is faster "1.0 sec / rounds"
-@export var multishot_add: float = 0.0
 @export var burst_seperation_add: float = 0.0 # spacing inside burst "1.0 second / rounds"
-@export var burst_size_add: float = 0.0
-@export var burst_per_shot_add: float = 0.0
 @export var distance_add: float = 0.0
 @export var recoil_add: float = 0.0
 @export var ads_speed_add: float = 0.0   # lower = faster aiming
@@ -39,10 +36,49 @@ class_name WeaponPart
 
 # Receiver-only fields (only fill these on receiver parts)
 @export_category("Reciever Only Fields")
-@export var trigger_mode: Enums.TriggerMode = Enums.TriggerMode.SEMI
-@export var multishot: float = 1.0
-@export var burst_per_shot: float = 1.0 #5 bursts of 1, with zero sep = shotgun
-@export var burst_size: float = 1.0 #1 burst per shot, 3 burst size = typical assault rifle
+@export var trigger_mode: Enums.TriggerMode = Enums.TriggerMode.SEMI:
+	set(value):
+		trigger_mode = value
+		notify_property_list_changed()
+@export var burst_per_shot: float = 1 #5 bursts of 1, with zero sep = shotgun
+@export var burst_size: float = 1 #1 burst per shot, 3 burst size = typical assault rifle
 @export var burst_seperation: float = 0.0 #0 is all at once
 @export var shot_interval: float = 0.0 #time between allowed trigger pulls (or between auto fire)
 @export var cycle_time: float = 0.0 #pump shotugn syle time betwen trigger pulls ((not reload)
+
+func _get_property_list() -> Array[Dictionary]:
+	var props: Array = []
+
+	# Always-visible fields
+	props.append({
+		"name": "trigger_mode",
+		"type": TYPE_INT,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": ",".join(Enums.TriggerMode.keys())
+	})
+	#props.append(_float_prop("reload_speed"))
+	
+	# ---- Burst-only ----
+	if burst_size >= 2:
+		props.append(_float_prop("burst_per_shot"))
+		props.append(_float_prop("burst_seperation"))
+
+	# ---- Auto / Semi ----
+	if trigger_mode in [Enums.TriggerMode.SEMI, Enums.TriggerMode.AUTO]:
+		props.append(_float_prop("shot_interval"))
+
+	# ---- Pump only ----
+	if trigger_mode == Enums.TriggerMode.PUMP:
+		props.append(_float_prop("cycle_time"))
+
+	# ---- Single-load ----
+	if trigger_mode == Enums.TriggerMode.SINGLE:
+		pass
+
+	return props
+
+func _float_prop(name: String) -> Dictionary:
+	return {
+		"name": name,
+		"type": TYPE_FLOAT
+	}

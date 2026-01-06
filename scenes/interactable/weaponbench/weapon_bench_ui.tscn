@@ -65,6 +65,7 @@ size_flags_stretch_ratio = 3.0
 [node name="WbWeaponDisplay" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox/Control" instance=ExtResource("2_3wnfg")]
 unique_name_in_owner = true
 layout_mode = 1
+debug = null
 
 [node name="WeaponStats_Margin" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox"]
 layout_mode = 2

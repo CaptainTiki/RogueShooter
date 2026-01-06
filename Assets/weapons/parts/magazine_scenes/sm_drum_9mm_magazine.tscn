@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dinv7jscbuxc7"]
+
+[node name="SmallDrumMag" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.9827712, 0.18482628, 0, -0.18482628, -0.9827712, 0, -0.029751567, 0.0029361094)
+radius = 0.01171875
+height = 0.06552734
+sides = 5
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.12713395, 0.99188554, 0, -0.99188554, 0.12713395, -0.0012240224, -0.072501235, -0.0048720567)
+radius = 0.0234375
+height = 0.025415039
+sides = 5
+
+[node name="SlotMarkers" type="Node3D" parent="."]

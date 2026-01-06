@@ -18,6 +18,8 @@ static func calculate_stats(weap : Weapon) -> WeaponStats:
 	var stats : WeaponStats = WeaponStats.new()
 	var total_burst_seperation : float= 0.0
 	var total_shot_interval : float = 0.0
+	var total_bps : float = 0.0
+	var total_multi : float = 0.0
 	
 	for part in weap.parts_by_id.values():
 		if part == null:
@@ -36,6 +38,8 @@ static func calculate_stats(weap : Weapon) -> WeaponStats:
 			
 			total_shot_interval += part.shot_interval_add
 			total_burst_seperation += part.burst_seperation_add
+			total_bps += part.burst_per_shot_add
+			total_multi += part.multishot_add
 			
 			if part.part_type == Enums.PartType.RECEIVER:
 				stats.ammo_type = part.ammo_type
@@ -44,13 +48,17 @@ static func calculate_stats(weap : Weapon) -> WeaponStats:
 				stats.burst_size = part.burst_size
 				stats.burst_seperation = part.burst_seperation
 				stats.shot_interval = part.shot_interval
+				stats.multishot = part.multishot
 				
 		
 	stats.burst_seperation += total_burst_seperation
 	stats.shot_interval += total_shot_interval
+	stats.burst_per_shot += total_bps
+	stats.multishot += total_multi
 	
 	#prevent negative ammo, firerate, and burst interval
 	stats.ammo_capacity = max(0.0, stats.ammo_capacity) #stay zero or positive
+	stats.multishot = max(1.0, stats.multishot) #always at least 1 round per shot
 	stats.burst_per_shot = max(1.0, stats.burst_per_shot) #always at least 1 round per trigger
 	stats.burst_size = max(1.0, stats.burst_size) #always at least 1 round per trigger
 	stats.burst_seperation = max(0.0, stats.burst_seperation) #zero is ok, for shotgun type

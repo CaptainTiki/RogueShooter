@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponPart2" load_steps=2 format=3 uid="uid://dh2f2fd3gj2ja"]
+
+[ext_resource type="Script" uid="uid://cnbpxf25f7mds" path="res://assets/weapons/resources/weapon_part_2.gd" id="1_s3nbw"]
+
+[resource]
+script = ExtResource("1_s3nbw")
+part_type = 1
+part_name = "Unnamed Part"
+rarity = 0
+size = 0
+metadata/_custom_type_script = "uid://cnbpxf25f7mds"
