@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://cd36emvihstqc"]
+
+[ext_resource type="PackedScene" uid="uid://be32jh7sjcjvt" path="res://assets/weapons/parts/receiver_scenes/plain_9mm_receiver.tscn" id="1_222v8"]
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="1_f3ciu"]
+
+[resource]
+script = ExtResource("1_f3ciu")
+part_name = "Plain 9mm Receiver"
+ammo_type = 3
+scene = ExtResource("1_222v8")
+adds_slots = Array[int]([1, 2, 4, 5])
+damage_add = 0.5
+recoil_add = 0.1
+spread_add = 0.1
+name_core = "Deringer"
+shot_interval = 0.35
+metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

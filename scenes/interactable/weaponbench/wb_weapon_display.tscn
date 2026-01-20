@@ -1,10 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0pd1kpnorygt"]
+[gd_scene load_steps=4 format=3 uid="uid://b0pd1kpnorygt"]
 
 [ext_resource type="Script" uid="uid://be11m4nmo1s8d" path="res://scenes/interactable/weaponbench/wb_weapon_display.gd" id="1_ky6ps"]
-[ext_resource type="PackedScene" uid="uid://be32jh7sjcjvt" path="res://Assets/weapons/parts/receiver_scenes/plain_9mm_receiver.tscn" id="2_t31cj"]
-[ext_resource type="PackedScene" uid="uid://drerxkrhds2bs" path="res://Assets/weapons/parts/barrel_scenes/short_rifled_barrel.tscn" id="3_isirv"]
-[ext_resource type="PackedScene" uid="uid://bnmeogk3jygv0" path="res://Assets/weapons/parts/magazine_scenes/standard_9mm_magazine.tscn" id="4_hu3v0"]
-[ext_resource type="Script" uid="uid://2hbn70ou8mhd" path="res://scenes/interactable/weaponbench/wb_display_lines_overlay.gd" id="5_isirv"]
 
 [sub_resource type="Environment" id="Environment_453rg"]
 
@@ -43,7 +39,7 @@ layout_mode = 2
 [node name="Weapon_Display_Label" type="Label" parent="PanelContainer/MarginContainer/MainVbox"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Weapon Display Panel"
+text = "Weapon Display"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/MainVbox"]
 layout_mode = 2
@@ -76,79 +72,13 @@ render_target_update_mode = 4
 [node name="WorldRoot" type="Node3D" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 
-[node name="Plain9MmReceiver" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport/WorldRoot" instance=ExtResource("2_t31cj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="ShortRifledBarrel" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport/WorldRoot/Plain9MmReceiver" instance=ExtResource("3_isirv")]
-
-[node name="PolymerPistolGrip" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport/WorldRoot/Plain9MmReceiver" instance=ExtResource("4_hu3v0")]
+[node name="WeaponPivot" type="Node3D" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport/WorldRoot"]
+unique_name_in_owner = true
 
 [node name="PreviewCamera" type="Camera3D" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14619717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48845065, 0)
-
-[node name="LinesOverlay" type="Control" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-script = ExtResource("5_isirv")
-
-[node name="SlotButtonsLayer" type="Control" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Slots_Container" type="MarginContainer" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SlotButtonsLayer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 12
-
-[node name="SlotsVBox" type="VBoxContainer" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SlotButtonsLayer/Slots_Container"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 6
-
-[node name="SlotsTopContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SlotButtonsLayer/Slots_Container/SlotsVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SlotButtonsLayer/Slots_Container/SlotsVBox"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="SlotsBottomContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVbox/VBoxContainer2/MarginContainer/SubViewportContainer/SlotButtonsLayer/Slots_Container/SlotsVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 6
-alignment = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://cnq5upr4supcw"]
+
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="1_qcqcj"]
+[ext_resource type="PackedScene" uid="uid://dyqvrmvdccdc7" path="res://assets/weapons/parts/grips_scenes/polymer_pistol_grip.tscn" id="1_togl4"]
+
+[resource]
+script = ExtResource("1_qcqcj")
+part_name = "Polymer Pistol Grip"
+part_type = 2
+scene = ExtResource("1_togl4")
+recoil_add = -0.2
+ads_speed_add = -0.15
+name_descriptor = "Polymer"
+metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

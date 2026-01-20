@@ -8,7 +8,6 @@ signal main_loaded
 @onready var ui: UserInterface = $UserInterface
 
 func _ready() -> void:
-	PartsCatalog.rebuild_catalog()
 	
 	MainScene.instance = self
 	main_loaded.emit()

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://0wjp12gadfnq"]
+
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="1_lrfk4"]
+[ext_resource type="PackedScene" uid="uid://b87buklnxjrcv" path="res://assets/weapons/parts/receiver_scenes/3shot_9mm_receiver.tscn" id="1_r6uiw"]
+
+[resource]
+script = ExtResource("1_lrfk4")
+part_name = "3Shot 9mm Receiver"
+ammo_type = 3
+scene = ExtResource("1_r6uiw")
+adds_slots = Array[int]([1, 2, 4, 5])
+damage_add = 0.5
+recoil_add = 0.1
+spread_add = 0.1
+ammo_add = 3.0
+name_core = "Shotty"
+multishot = 3.0
+shot_interval = 0.35
+metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

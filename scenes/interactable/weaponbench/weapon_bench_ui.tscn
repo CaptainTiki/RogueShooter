@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://06ga0ydmktd2" path="res://scenes/interactable/weaponbench/weapon_bench_ui.gd" id="1_6dbne"]
 [ext_resource type="PackedScene" uid="uid://b0pd1kpnorygt" path="res://scenes/interactable/weaponbench/wb_weapon_display.tscn" id="2_3wnfg"]
 [ext_resource type="PackedScene" uid="uid://dnc1slm3pt5ls" path="res://scenes/interactable/weaponbench/wb_weapon_stats.tscn" id="3_8f172"]
-[ext_resource type="PackedScene" uid="uid://buldi8s6vsm3k" path="res://scenes/interactable/weaponbench/wb_parts_stats.tscn" id="4_28dcf"]
-[ext_resource type="PackedScene" uid="uid://b2mcdhl2j84de" path="res://scenes/interactable/weaponbench/wb_parts_display.tscn" id="5_wepk4"]
+[ext_resource type="PackedScene" path="res://scenes/interactable/weaponbench/wb_mod_slots.tscn" id="4_modslots"]
+[ext_resource type="PackedScene" path="res://scenes/interactable/weaponbench/wb_mod_picker.tscn" id="5_modpicker"]
 
 [node name="WeaponBenchUi" type="Control"]
 layout_mode = 3
@@ -43,7 +43,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="FullscreenMarginContainer/VBoxContainer/Bench_Header_MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "WeaponBench UI"
+text = "Weapon Bench"
 
 [node name="Bench_Main_MarginContainer" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -65,7 +65,6 @@ size_flags_stretch_ratio = 3.0
 [node name="WbWeaponDisplay" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox/Control" instance=ExtResource("2_3wnfg")]
 unique_name_in_owner = true
 layout_mode = 1
-debug = null
 
 [node name="WeaponStats_Margin" type="MarginContainer" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Left_Container_VBox"]
 layout_mode = 2
@@ -87,7 +86,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="WbPartStats" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control2" instance=ExtResource("4_28dcf")]
+[node name="WbModSlots" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control2" instance=ExtResource("4_modslots")]
 unique_name_in_owner = true
 layout_mode = 1
 
@@ -96,7 +95,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="WbPartsDisplay" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control3" instance=ExtResource("5_wepk4")]
+[node name="WbModPicker" parent="FullscreenMarginContainer/VBoxContainer/Bench_Main_MarginContainer/HBoxContainer/Main_Right_Container_VBox/Control3" instance=ExtResource("5_modpicker")]
 unique_name_in_owner = true
 layout_mode = 1
 

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dyqvrmvdccdc7"]
+
+[node name="PolymerPistolGrip" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, -0.0021319035, -0.0214609)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.9827712, 0.18482628, 0, -0.18482628, -0.9827712, 0, -0.033158634, 0.0022953544)
+radius = 0.014160156
+height = 0.072460935
+sides = 5
+
+[node name="SlotMarkers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0021319035, -0.0214609)
+
+[node name="Slot_MAGAZINE_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009417847, 0.007584933)

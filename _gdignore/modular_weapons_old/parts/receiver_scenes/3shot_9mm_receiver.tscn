@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=4 uid="uid://b87buklnxjrcv"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_r0r1t"]
+_surfaces = [{
+"aabb": AABB(-0.025, -0.025, -0.0375, 0.05, 0.05, 0.075),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("zczMvM3MzLyamRk9zczMvM3MzLyamRm9zczMvM3MzDyamRm9zczMPM3MzLyamRm9zczMvM3MzLyamRm9zczMvM3MzLyamRk9zczMvM3MzDyamRm9zczMvM3MzLyamRm9zczMPM3MzLyamRm9zczMvM3MzDyamRm9zczMvM3MzDyamRk9zczMvM3MzLyamRk9zczMvM3MzLyamRk9zczMvM3MzDyamRk9zczMPM3MzDyamRk9zczMPM3MzDyamRk9zczMvM3MzDyamRk9zczMvM3MzDyamRm9zczMvM3MzLyamRk9zczMPM3MzLyamRk9zczMPM3MzLyamRm9zczMPM3MzDyamRk9zczMPM3MzLyamRk9zczMvM3MzLyamRk9zczMPM3MzLyamRm9zczMPM3MzLyamRk9zczMPM3MzDyamRk9zczMPM3MzLyamRm9zczMPM3MzDyamRm9zczMvM3MzDyamRm9zczMvM3MzDyamRm9zczMPM3MzDyamRm9zczMPM3MzDyamRk9zczMPM3MzDyamRk9zczMPM3MzDyamRm9zczMPM3MzLyamRm9AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[node name="Plain9MmReceiver" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGCombiner3D"]
+size = Vector3(0.05, 0.05, 0.075)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+mesh = SubResource("ArrayMesh_r0r1t")
+
+[node name="SlotMarkers" type="Node3D" parent="."]
+
+[node name="Slot_BARREL_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03874603)
+
+[node name="Slot_GRIP_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02546043, 0.03184053)
+
+[node name="Slot_MAGAZINE_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0329139, 0.03393287)
+
+[node name="Slot_OPTIC_0" type="Marker3D" parent="SlotMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025863305, 0.027863678)

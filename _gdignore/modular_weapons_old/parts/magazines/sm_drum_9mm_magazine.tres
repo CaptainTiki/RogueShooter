@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponPart" load_steps=3 format=3 uid="uid://byr8ixiuy6fnk"]
+
+[ext_resource type="PackedScene" uid="uid://dinv7jscbuxc7" path="res://assets/weapons/parts/magazine_scenes/sm_drum_9mm_magazine.tscn" id="1_04y3c"]
+[ext_resource type="Script" uid="uid://bgo3s4tfhtmb0" path="res://assets/weapons/resources/weapon_part.gd" id="1_a2o18"]
+
+[resource]
+script = ExtResource("1_a2o18")
+part_name = "Small 9mm Drum"
+part_type = 4
+ammo_type = 3
+scene = ExtResource("1_04y3c")
+shot_interval_add = 0.1
+ads_speed_add = 0.13
+ammo_add = 28.0
+reload_speed_add = 0.42
+name_prefix = "Extra"
+metadata/_custom_type_script = "uid://bgo3s4tfhtmb0"

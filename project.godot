@@ -18,7 +18,6 @@ config/icon="uid://djck0cy48fh5m"
 
 [autoload]
 
-PartsCatalog="*res://scripts/system/parts_catalog.gd"
 Enums="*res://scripts/system/enums.gd"
 
 [editor_plugins]
