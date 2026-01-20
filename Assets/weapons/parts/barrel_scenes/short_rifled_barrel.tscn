@@ -3,6 +3,7 @@
 [node name="ShortRifledBarrel" type="Node3D"]
 
 [node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mesh"]
 
@@ -15,7 +16,7 @@ sides = 5
 [node name="SlotMarkers" type="Node3D" parent="."]
 
 [node name="Slot_GRIP_0" type="Marker3D" parent="SlotMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012090806, 0.046928305)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012090806, -0.053071696)
 
 [node name="Slot_MUZZLE_0" type="Marker3D" parent="SlotMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001484178, 0.101756275)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001484178, -0.09824373)

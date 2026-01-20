@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://2cerm075s728"]
+
+[ext_resource type="Script" uid="uid://dtcs2prvy617q" path="res://scenes/interactable/weaponbench/slot_button.gd" id="1_y6jeq"]
+
+[sub_resource type="Gradient" id="Gradient_y6jeq"]
+offsets = PackedFloat32Array(0, 0.35507247, 1)
+colors = PackedColorArray(0.288518, 0.28851798, 0.28851798, 1, 0.41215247, 0.41215247, 0.41215247, 1, 0.14044744, 0.14044744, 0.14044744, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymanu"]
+gradient = SubResource("Gradient_y6jeq")
+fill_from = Vector2(0.48514852, 0)
+fill_to = Vector2(0.509901, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2awjn"]
+font_size = 9
+
+[node name="SlotButton" type="Control"]
+custom_minimum_size = Vector2(64, 28)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_y6jeq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="SlotBtn" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("GradientTexture2D_ymanu")
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = -3
+
+[node name="SlotTypeLabel" type="Label" parent="MarginContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Magazine"
+label_settings = SubResource("LabelSettings_2awjn")
+vertical_alignment = 1
+
+[node name="PartLabel" type="Label" parent="MarginContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Magazine"
+label_settings = SubResource("LabelSettings_2awjn")
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2
