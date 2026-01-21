@@ -1,0 +1,105 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgo8xp405i34i"]
+
+[ext_resource type="Script" uid="uid://dnrftd12gte2o" path="res://scripts/ui/chest_screen.gd" id="1_chest"]
+
+[node name="ChestScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chest")
+
+[node name="Root" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VRoot" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleBar" type="HBoxContainer" parent="Root/VRoot"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Root/VRoot/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Storage Chest"
+
+[node name="CloseBn" type="Button" parent="Root/VRoot/TitleBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close"
+
+[node name="Content" type="HBoxContainer" parent="Root/VRoot"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Mods" type="VBoxContainer" parent="Root/VRoot/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ModsLabel" type="Label" parent="Root/VRoot/Content/Mods"]
+layout_mode = 2
+text = "Base Mods"
+
+[node name="ModsScroll" type="ScrollContainer" parent="Root/VRoot/Content/Mods"]
+custom_minimum_size = Vector2(360, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ModsVBox" type="VBoxContainer" parent="Root/VRoot/Content/Mods/ModsScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="Ammo" type="VBoxContainer" parent="Root/VRoot/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AmmoLabel" type="Label" parent="Root/VRoot/Content/Ammo"]
+layout_mode = 2
+text = "Base Ammo"
+
+[node name="AmmoScroll" type="ScrollContainer" parent="Root/VRoot/Content/Ammo"]
+custom_minimum_size = Vector2(280, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AmmoVBox" type="VBoxContainer" parent="Root/VRoot/Content/Ammo/AmmoScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="Buttons" type="HBoxContainer" parent="Root/VRoot"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="DepositBn" type="Button" parent="Root/VRoot/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Deposit (Player -> Base)"
+
+[node name="WithdrawBn" type="Button" parent="Root/VRoot/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Withdraw (Base -> Player)"

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://boueadv328mwd"]
+[gd_scene load_steps=8 format=3 uid="uid://boueadv328mwd"]
 
 [ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://5w6f1bd5hvsy" path="res://levels/level.gd" id="1_qd0o6"]
 [ext_resource type="PackedScene" uid="uid://dm1qn6wrhem5" path="res://levels/test_map.tscn" id="2_htrvu"]
 [ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="2_ycx7s"]
 [ext_resource type="PackedScene" uid="uid://cru5cesyyodit" path="res://scenes/interactable/weaponbench/weapon_bench.tscn" id="4_6lfjr"]
+[ext_resource type="PackedScene" uid="uid://l3lmnhrsgv4q" path="res://scenes/interactable/chest/chest.tscn" id="6_i5e4g"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/ammo_pickup.tscn" id="7_pvbb1"]
 
 [node name="PrototypeLevel" type="Node3D" groups=["level"]]
 script = ExtResource("1_qd0o6")
@@ -22,3 +24,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0948617, 0)
 
 [node name="WeaponBench" parent="Interactables" instance=ExtResource("4_6lfjr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.048688, 1.0097265, -9.894771)
+
+[node name="Chest" parent="Interactables" instance=ExtResource("6_i5e4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.309911, 0.7000002, -9.853451)
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="AmmoPickup" parent="Pickups" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.742922, 0.6500001, -1.3638644)
+
+[node name="AmmoPickup2" parent="Pickups" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.192278, 0.6500001, 1.6086016)
+amount = 30

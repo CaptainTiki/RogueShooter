@@ -102,4 +102,16 @@ func _seed_default_loadout(g: Game) -> void:
 			continue
 		g.base_inventory.owned_mods.append(m)
 
+
+	# Ammo pools (MVP) - seed some starting ammo into BASE storage.
+	# Player can pull from the chest later; for now, we also give a little to the player so reload works immediately.
+	g.base_inventory.add_ammo(Enums.AmmoType.NINE_MM, 300)
+	g.base_inventory.add_ammo(Enums.AmmoType.FIVE_FIVE_SIX, 240)
+	g.base_inventory.add_ammo(Enums.AmmoType.SEVEN_SIX_TWO, 180)
+	g.base_inventory.add_ammo(Enums.AmmoType.TWELVE_GAUGE, 80)
+	g.base_inventory.add_ammo(Enums.AmmoType.BATTERY, 200)
+	g.player_inventory.add_ammo(Enums.AmmoType.NINE_MM, 90)
+	g.player_inventory.add_ammo(Enums.AmmoType.FIVE_FIVE_SIX, 60)
+	g.player_inventory.add_ammo(Enums.AmmoType.TWELVE_GAUGE, 20)
+
 	g.game_state.equipped_weapon_index = 0

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="Weapon" load_steps=6 format=3 uid="uid://cfq7l75xdww1a"]
 
-[ext_resource type="Script" path="res://assets/weapons/scripts/weapon.gd" id="1"]
-[ext_resource type="Script" path="res://assets/weapons/resources/weapon_stats.gd" id="2"]
-[ext_resource type="PackedScene" path="res://assets/weapons/blaster-a.glb" id="3"]
+[ext_resource type="Script" uid="uid://dgjai5nd2byfk" path="res://assets/weapons/scripts/weapon.gd" id="1"]
+[ext_resource type="Script" uid="uid://cjewlnvcl1ab0" path="res://assets/weapons/resources/weapon_stats.gd" id="2"]
+[ext_resource type="Script" uid="uid://bg5r2b43tvs5q" path="res://assets/weapons/resources/weapon_mod.gd" id="2_exv4s"]
+[ext_resource type="PackedScene" uid="uid://dncfsyim5upks" path="res://assets/weapons/blaster-a.glb" id="3"]
 
 [sub_resource type="Resource" id="WeaponStats_1"]
 script = ExtResource("2")
@@ -11,24 +12,14 @@ distance = 20.0
 recoil = 4.2
 spread = 2.4
 ads_speed = 1.0
-fov_amount = 0.0
 ammo_type = 3
 ammo_capacity = 8.0
 reload_speed = 1.6
-trigger_mode = 0
-multishot = 1.0
-burst_per_shot = 1.0
-burst_size = 1.0
-burst_seperation = 0.0
 shot_interval = 0.35
 
 [resource]
 script = ExtResource("1")
 weapon_name = "Handcannon"
-rarity = 0
 weapon_model = ExtResource("3")
-weapon_position = Vector3(0.2, -0.2, -0.3)
-is_hitscan = true
 base_stats = SubResource("WeaponStats_1")
-mod_slots = [0, 1, 2, 3]
-installed_mods = []
+mod_slots = Array[int]([0, 1, 2, 3])

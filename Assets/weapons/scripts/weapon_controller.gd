@@ -48,9 +48,70 @@ func can_fire() -> bool:
 	return current_ammo >= 1
 
 func reload_weapon() -> void:
-	current_ammo = weapon_stats.ammo_capacity
+	if weapon_stats == null:
+		return
+
+	# If ammo type is ANY, treat as 'infinite / test ammo' for now.
+	if int(weapon_stats.ammo_type) == int(Enums.AmmoType.ANY):
+		current_ammo = weapon_stats.ammo_capacity
+		if debug:
+			print("reloaded weapon (ANY ammo, infinite test pool)")
+		return
+
+	var inv: Inventory = null
+	if Game.current != null:
+		inv = Game.current.player_inventory
+	if inv == null:
+		# No game/inventory context; fall back to infinite.
+		current_ammo = weapon_stats.ammo_capacity
+		if debug:
+			print("reloaded weapon (no inventory context)")
+		return
+
+	var cap : int= int(weapon_stats.ammo_capacity)
+	var cur : int= int(current_ammo)
+	var need : int = max(0, cap - cur)
+	if need <= 0:
+		return
+
+	var have := inv.get_ammo(weapon_stats.ammo_type)
+	if have <= 0:
+		if debug:
+			print("reload failed: no ammo in pool for type:", int(weapon_stats.ammo_type))
+		return
+
+	var to_load : int = min(need, have)
+	inv.consume_ammo(weapon_stats.ammo_type, to_load)
+	current_ammo = float(cur + to_load)
+
 	if debug:
-		print("reloaded weapon")
+		print("reloaded weapon. loaded:", to_load, " pool_left:", inv.get_ammo(weapon_stats.ammo_type), " mag:", int(current_ammo), "/", cap)
+
+func cycle_weapon(step: int) -> void:
+	if Game.current == null:
+		return
+
+	var inv := Game.current.player_inventory
+	if inv == null:
+		return
+
+	var count := inv.owned_weapons.size()
+	if count <= 0:
+		return
+
+	var idx := Game.current.game_state.equipped_weapon_index
+	idx = (idx + step) % count
+	if idx < 0:
+		idx += count
+
+	Game.current.game_state.equipped_weapon_index = idx
+
+	var w := inv.owned_weapons[idx] as Weapon
+	if w == null:
+		return
+
+	current_weapon = w
+	weapon_changed.emit()
 
 func fire_weapon() -> void:
 	if not can_fire():
@@ -135,6 +196,8 @@ func _on_weapon_changed() -> void:
 		current_weapon.recalculate()
 		weapon_stats = current_weapon.stats
 		current_ammo = weapon_stats.ammo_capacity
+		spawn_weapon_model()
+
 		if debug:
 			debug_print()
 
@@ -152,27 +215,6 @@ func _get_seed_weapon_or_fallback() -> Weapon:
 	var fallback := load("res://assets/weapons/blueprints/pistol_rusty_sidearm.tres") as Weapon
 	if fallback != null:
 		return fallback.clone_weapon()
-
-	# Last-ditch safety.
-	var w2 := Weapon.new()
-	w2.weapon_name = "Emergency Blaster"
-	w2.is_hitscan = true
-	w2.weapon_model = load("res://assets/weapons/blaster-a.glb") as PackedScene
-	var s := WeaponStats.new()
-	s.damage = 4.0
-	s.distance = 18.0
-	s.ammo_capacity = 18.0
-	s.reload_speed = 1.2
-	s.shot_interval = 0.2
-	s.spread = 2.0
-	s.recoil = 2.5
-	s.trigger_mode = Enums.TriggerMode.SEMI
-	s.multishot = 1
-	s.burst_per_shot = 1
-	s.burst_size = 1
-	s.burst_seperation = 0.0
-	w2.base_stats = s
-	w2.mod_slots = [Enums.ModSlotType.BARREL, Enums.ModSlotType.OPTIC, Enums.ModSlotType.UTILITY]
-	w2.installed_mods = []
-	w2.recalculate()
-	return w2
+	
+	printerr("no weapons found!")
+	return null

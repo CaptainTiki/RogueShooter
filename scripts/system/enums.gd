@@ -1,7 +1,6 @@
 # enums.gd (Autoload name: Enums)
 extends Node
 
-enum PartType { RECEIVER, BARREL, GRIP, STOCK, MAGAZINE, OPTIC, MUZZLE, FOREGRIP }  # add more later
 enum ModSlotType { BARREL, OPTIC, UTILITY, RECEIVER }
 enum WeaponSize { SMALL, MEDIUM, LARGE, HUGE }
 enum TriggerMode { SEMI, AUTO, PUMP, SINGLE, CHARGESS }

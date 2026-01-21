@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d06eq1wf4ohgs"]
+[gd_scene load_steps=5 format=3 uid="uid://d06eq1wf4ohgs"]
 
 [ext_resource type="Script" uid="uid://dnbqp8bh8wapm" path="res://scripts/system/user_interface.gd" id="1_jqr8t"]
 [ext_resource type="Script" uid="uid://bvwbkvgwijoal" path="res://scripts/ui/reticle_draw.gd" id="2_s3ato"]
 [ext_resource type="PackedScene" uid="uid://dsblxejye1btb" path="res://UI/pause_menu.tscn" id="3_bwudt"]
+[ext_resource type="PackedScene" path="res://UI/hud.tscn" id="4_hud"]
 
 [node name="UserInterface" type="CanvasLayer"]
 process_mode = 3
@@ -24,6 +25,8 @@ radius = 9.0
 thickness = 2.25
 gap_angle = 27.515
 segments = 2
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
 
 [node name="Screens" type="Control" parent="."]
 layout_mode = 3

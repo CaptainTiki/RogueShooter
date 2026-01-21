@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://db1wudsjtmdvw"]
+[gd_scene load_steps=35 format=3 uid="uid://db1wudsjtmdvw"]
 
 [ext_resource type="PackedScene" uid="uid://d06jv8qr3v4wg" path="res://scenes/player/components/camera_controller.tscn" id="1_etyb6"]
 [ext_resource type="Script" uid="uid://bjhxv18wjfjrm" path="res://scripts/player/player_controller.gd" id="1_h2fbm"]
+[ext_resource type="Script" uid="uid://di10jxu1ujdwu" path="res://scripts/player/health_component.gd" id="1_health"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_jsc2v"]
 [ext_resource type="PackedScene" uid="uid://dggwg41jgwgxq" path="res://scenes/player/components/mouse_capture.tscn" id="3_23doe"]
 [ext_resource type="Script" uid="uid://xmjhyo7pc3lh" path="res://scripts/player/components/player_state_machine.gd" id="4_6ev1f"]
@@ -27,6 +28,8 @@
 [ext_resource type="Script" uid="uid://djg486d1k4h8r" path="res://assets/weapons/scripts/states/weapon_firing_state.gd" id="25_1qanr"]
 [ext_resource type="Script" uid="uid://dn6hvj0i7yogw" path="res://assets/weapons/scripts/states/weapon_cooldown_state.gd" id="25_mx0ws"]
 [ext_resource type="Script" uid="uid://q663t1dsij0p" path="res://assets/weapons/scripts/states/weapon_empty_state.gd" id="26_26d1a"]
+[ext_resource type="Script" uid="uid://8yhli6mkj64e" path="res://assets/weapons/scripts/states/weapon_cycle_up_state.gd" id="29_26d1a"]
+[ext_resource type="Script" uid="uid://cfjhewntx50wv" path="res://assets/weapons/scripts/states/weapon_cycle_down_state.gd" id="30_bb0bp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe3vx"]
 
@@ -37,7 +40,7 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e86ib"]
 
-[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects", "step_handler", "weapon_controller")]
+[node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("camera", "state_chart", "standing_collision", "crouch_collision", "crouch_check", "interaction_raycast", "camera_effects", "step_handler", "weapon_controller") groups=["player"]]
 collision_mask = 256
 safe_margin = 0.01
 script = ExtResource("1_h2fbm")
@@ -50,6 +53,9 @@ interaction_raycast = NodePath("Components/CameraController/Camera3D/Interaction
 camera_effects = NodePath("Components/CameraController/Camera3D")
 step_handler = NodePath("Components/StepHandler")
 weapon_controller = NodePath("Components/WeaponController")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_health")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_jsc2v")]
 visible = false
@@ -278,6 +284,12 @@ script = ExtResource("8_lk8tp")
 [node name="EmptyState" type="Node" parent="WeaponStateChart/Root"]
 script = ExtResource("8_lk8tp")
 
+[node name="CycleUpState" type="Node" parent="WeaponStateChart/Root"]
+script = ExtResource("8_lk8tp")
+
+[node name="CycleDownState" type="Node" parent="WeaponStateChart/Root"]
+script = ExtResource("8_lk8tp")
+
 [node name="OnIdle" type="Node" parent="WeaponStateChart/Root"]
 script = ExtResource("8_wtdo7")
 to = NodePath("../IdleState")
@@ -302,6 +314,18 @@ to = NodePath("../EmptyState")
 event = &"onEmpty"
 delay_in_seconds = "0.0"
 
+[node name="OnCycleUp" type="Node" parent="WeaponStateChart/Root"]
+script = ExtResource("8_wtdo7")
+to = NodePath("../CycleUpState")
+event = &"onCycleUp"
+delay_in_seconds = "0.0"
+
+[node name="OnCycleDown" type="Node" parent="WeaponStateChart/Root"]
+script = ExtResource("8_wtdo7")
+to = NodePath("../CycleDownState")
+event = &"onCycleDown"
+delay_in_seconds = "0.0"
+
 [node name="WeaponStateMachine" type="Node" parent="." node_paths=PackedStringArray("weapon_controller")]
 unique_name_in_owner = true
 script = ExtResource("23_mx0ws")
@@ -318,6 +342,12 @@ script = ExtResource("25_mx0ws")
 
 [node name="EmptyState" type="Node" parent="WeaponStateMachine"]
 script = ExtResource("26_26d1a")
+
+[node name="CycleUpState" type="Node" parent="WeaponStateMachine"]
+script = ExtResource("29_26d1a")
+
+[node name="CycleDownState" type="Node" parent="WeaponStateMachine"]
+script = ExtResource("30_bb0bp")
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded" to="StateMachine/MovementState/GroundedState" method="_on_grounded_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded/Idle" to="StateMachine/MovementState/GroundedState/IdleState" method="_on_idle_state_physics_processing"]
@@ -341,5 +371,9 @@ script = ExtResource("26_26d1a")
 [connection signal="state_processing" from="WeaponStateChart/Root/CooldownState" to="WeaponStateMachine/CooldownState" method="_on_cool_down_state_processing"]
 [connection signal="state_entered" from="WeaponStateChart/Root/EmptyState" to="WeaponStateMachine/EmptyState" method="_on_empty_state_entered"]
 [connection signal="state_processing" from="WeaponStateChart/Root/EmptyState" to="WeaponStateMachine/EmptyState" method="_on_empty_state_processing"]
+[connection signal="state_entered" from="WeaponStateChart/Root/CycleUpState" to="WeaponStateMachine/CycleUpState" method="_on_cycle_up_state_entered"]
+[connection signal="state_processing" from="WeaponStateChart/Root/CycleUpState" to="WeaponStateMachine/CycleUpState" method="_on_cycle_up_state_processing"]
+[connection signal="state_entered" from="WeaponStateChart/Root/CycleDownState" to="WeaponStateMachine/CycleDownState" method="_on_cycle_down_state_entered"]
+[connection signal="state_processing" from="WeaponStateChart/Root/CycleDownState" to="WeaponStateMachine/CycleDownState" method="_on_cycle_down_state_processing"]
 
 [editable path="Components/CameraController"]
