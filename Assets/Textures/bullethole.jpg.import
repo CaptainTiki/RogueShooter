@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjl53b2i55hqy"
-path="res://.godot/imported/bullethole.jpg-12fb73ce3238da9ce89e266694cdb3da.ctex"
+path="res://.godot/imported/bullethole.jpg-b8252bacdbcc99976ccb17874e0a8c1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/bullethole.jpg"
-dest_files=["res://.godot/imported/bullethole.jpg-12fb73ce3238da9ce89e266694cdb3da.ctex"]
+source_file="res://assets/Textures/bullethole.jpg"
+dest_files=["res://.godot/imported/bullethole.jpg-b8252bacdbcc99976ccb17874e0a8c1b.ctex"]
 
 [params]
 

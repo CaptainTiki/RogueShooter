@@ -1,6 +1,9 @@
 extends RefCounted
 class_name GameState
 
+# loadout / equipment
+var equipped_weapon_index: int = 0
+
 var run_kills: int = 0
 var run_time_seconds: float = 0.0
 var seed: int = 0

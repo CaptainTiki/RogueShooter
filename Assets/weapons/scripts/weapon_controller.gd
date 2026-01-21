@@ -16,8 +16,9 @@ var current_weapon_model: Node3D
 var current_ammo: float
 
 func _ready() -> void:
-	current_weapon = build_default_pistol()
-	_on_weapon_changed() #do the first setup of the weapon.
+	# Prefer seed loadout from Game.
+	current_weapon = _get_seed_weapon_or_fallback()
+	_on_weapon_changed() # do the first setup of the weapon.
 	weapon_changed.connect(_on_weapon_changed)
 
 func debug_print()-> void:
@@ -137,28 +138,41 @@ func _on_weapon_changed() -> void:
 		if debug:
 			debug_print()
 
-func build_default_pistol() -> Weapon:
-	# Temporary hard-coded weapon until we hook up blueprints + crafting.
-	var w := Weapon.new()
-	w.weapon_name = "Blaster"
-	w.is_hitscan = true
-	w.weapon_model = load("res://assets/weapons/blaster-a.glb") as PackedScene
 
+func _get_seed_weapon_or_fallback() -> Weapon:
+	if Game.current != null:
+		var inv := Game.current.player_inventory
+		if inv != null and inv.owned_weapons.size() > 0:
+			var idx : int = clamp(Game.current.game_state.equipped_weapon_index, 0, inv.owned_weapons.size() - 1)
+			var w := inv.owned_weapons[idx] as Weapon
+			if w != null:
+				return w
+
+	push_warning("WeaponController: no seeded weapon found; using fallback blueprint")
+	var fallback := load("res://assets/weapons/blueprints/pistol_rusty_sidearm.tres") as Weapon
+	if fallback != null:
+		return fallback.clone_weapon()
+
+	# Last-ditch safety.
+	var w2 := Weapon.new()
+	w2.weapon_name = "Emergency Blaster"
+	w2.is_hitscan = true
+	w2.weapon_model = load("res://assets/weapons/blaster-a.glb") as PackedScene
 	var s := WeaponStats.new()
-	s.damage = 4.5
-	s.distance = 16.0
-	s.ammo_capacity = 24.0
-	s.reload_speed = 1.4
-	s.shot_interval = 0.16
-	s.spread = 2.1
-	s.recoil = 3.3
+	s.damage = 4.0
+	s.distance = 18.0
+	s.ammo_capacity = 18.0
+	s.reload_speed = 1.2
+	s.shot_interval = 0.2
+	s.spread = 2.0
+	s.recoil = 2.5
 	s.trigger_mode = Enums.TriggerMode.SEMI
 	s.multishot = 1
 	s.burst_per_shot = 1
 	s.burst_size = 1
 	s.burst_seperation = 0.0
-	w.base_stats = s
-	w.mod_slots = [Enums.ModSlotType.BARREL, Enums.ModSlotType.OPTIC, Enums.ModSlotType.UTILITY]
-	w.installed_mods = [null, null, null]
-	w.recalculate()
-	return w
+	w2.base_stats = s
+	w2.mod_slots = [Enums.ModSlotType.BARREL, Enums.ModSlotType.OPTIC, Enums.ModSlotType.UTILITY]
+	w2.installed_mods = []
+	w2.recalculate()
+	return w2

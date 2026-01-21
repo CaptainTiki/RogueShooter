@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://assets/weapons/scripts/weapon.gd" id="1"]
+[ext_resource type="Script" path="res://assets/weapons/resources/weapon_stats.gd" id="2"]
+[ext_resource type="PackedScene" path="res://assets/weapons/blaster-a.glb" id="3"]
+
+[sub_resource type="Resource" id="WeaponStats_1"]
+script = ExtResource("2")
+damage = 2.4
+distance = 24.0
+recoil = 6.5
+spread = 5.5
+ads_speed = 1.15
+fov_amount = 0.0
+ammo_type = 5
+ammo_capacity = 8.0
+reload_speed = 2.8
+trigger_mode = 1
+multishot = 9.0
+burst_per_shot = 1.0
+burst_size = 1.0
+burst_seperation = 0.0
+shot_interval = 0.25
+
+[resource]
+script = ExtResource("1")
+weapon_name = "Benelli Auto-Shotty"
+rarity = 0
+weapon_model = ExtResource("3")
+weapon_position = Vector3(0.2, -0.2, -0.3)
+is_hitscan = true
+base_stats = SubResource("WeaponStats_1")
+mod_slots = [0, 1, 3, 2]
+installed_mods = []

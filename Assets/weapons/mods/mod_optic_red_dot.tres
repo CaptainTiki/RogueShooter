@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://assets/weapons/resources/weapon_mod.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+mod_name = "Red Dot Optic"
+slot_type = 1
+rarity = 0
+damage_add = 0.0
+distance_add = 0.0
+recoil_add = 0.0
+spread_add = 0.0
+ads_speed_add = 0.0
+fov_amount_add = 0.0
+ammo_capacity_add = 0.0
+reload_speed_add = 0.0
+shot_interval_add = 0.0
+damage_mul = 1.0
+distance_mul = 1.0
+recoil_mul = 1.0
+spread_mul = 0.92
+ads_speed_mul = 0.85
+reload_speed_mul = 1.0
+shot_interval_mul = 1.0
+override_trigger_mode = false
+trigger_mode = 0
+override_ammo_type = false
+ammo_type = 0

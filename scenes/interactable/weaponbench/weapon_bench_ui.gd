@@ -1,7 +1,6 @@
 extends Control
 class_name WeaponBenchUI
 
-@export var debug : bool = true
 
 @onready var weapon_display: WB_WeaponDisplay = %WbWeaponDisplay
 @onready var weapon_stats: WB_WeaponStats = %WbWeaponStats
@@ -26,11 +25,12 @@ func _ready() -> void:
 		if not mod_picker.closed.is_connected(_on_mod_picker_closed):
 			mod_picker.closed.connect(_on_mod_picker_closed)
 
-	_owned_mods = _build_debug_owned_mods()
 
 func open_for(player: Node3D, _bench: WeaponBench) -> void:
 	actor = player as PlayerController
 	bench = _bench
+
+	_owned_mods = _get_owned_mods()
 
 	# Work on a copy so Cancel is safe
 	_weapon_preview = actor.weapon_controller.current_weapon.clone_weapon()
@@ -55,6 +55,11 @@ func _on_mod_slot_selected(slot_index: int) -> void:
 		installed = _weapon_preview.installed_mods[slot_index]
 	var compatible := _get_compatible_mods(slot_type)
 	mod_picker.open_for(slot_type, compatible, installed)
+
+func _get_owned_mods() -> Array[WeaponMod]:
+	if Game.current != null and Game.current.base_inventory != null:
+		return Game.current.base_inventory.owned_mods
+	return []
 
 func _get_compatible_mods(slot_type: Enums.ModSlotType) -> Array[WeaponMod]:
 	var out: Array[WeaponMod] = []
@@ -92,52 +97,6 @@ func _on_mod_picker_closed() -> void:
 	# no-op for now
 	pass
 
-func _build_debug_owned_mods() -> Array[WeaponMod]:
-	# Temporary stub inventory so the picker has something to show.
-	# Later: replace with player inventory.
-	var mods: Array[WeaponMod] = []
-
-	var barrel_ext := WeaponMod.new()
-	barrel_ext.mod_name = "Barrel Extension"
-	barrel_ext.slot_type = Enums.ModSlotType.BARREL
-	barrel_ext.distance_add = 6.0
-	barrel_ext.spread_mul = 0.9
-	mods.append(barrel_ext)
-
-	var ported := WeaponMod.new()
-	ported.mod_name = "Ported Compensator"
-	ported.slot_type = Enums.ModSlotType.BARREL
-	ported.recoil_mul = 0.8
-	ported.spread_add = 0.2
-	mods.append(ported)
-
-	var red_dot := WeaponMod.new()
-	red_dot.mod_name = "Red Dot Optic"
-	red_dot.slot_type = Enums.ModSlotType.OPTIC
-	red_dot.ads_speed_mul = 0.85
-	red_dot.spread_mul = 0.92
-	mods.append(red_dot)
-
-	var gyro := WeaponMod.new()
-	gyro.mod_name = "Gyro Stabilizer"
-	gyro.slot_type = Enums.ModSlotType.UTILITY
-	gyro.recoil_add = -0.8
-	mods.append(gyro)
-
-	var quick_reload := WeaponMod.new()
-	quick_reload.mod_name = "Quick-Reload Kit"
-	quick_reload.slot_type = Enums.ModSlotType.UTILITY
-	quick_reload.reload_speed_mul = 0.8
-	mods.append(quick_reload)
-
-	var overclock := WeaponMod.new()
-	overclock.mod_name = "Overclocked Actuator"
-	overclock.slot_type = Enums.ModSlotType.UTILITY
-	overclock.shot_interval_mul = 0.9
-	overclock.recoil_add = 0.3
-	mods.append(overclock)
-
-	return mods
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
@@ -156,6 +115,12 @@ func _on_accept_bn_pressed() -> void:
 	if actor == null or _weapon_preview == null:
 		return
 	actor.weapon_controller.current_weapon = _weapon_preview
+	# keep Game state in sync
+	if Game.current != null:
+		var inv := Game.current.player_inventory
+		if inv != null and inv.owned_weapons.size() > 0:
+			var idx : int = clamp(Game.current.game_state.equipped_weapon_index, 0, inv.owned_weapons.size() - 1)
+			inv.owned_weapons[idx] = _weapon_preview
 	actor.weapon_controller.weapon_changed.emit()
 	actor.weapon_controller.reload_weapon()
 	bench.close_ui()
