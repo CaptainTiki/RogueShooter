@@ -1,0 +1,14 @@
+{
+  "base_weight": 1.0,
+  "bounds_local": {"position": [-10.0, 0.0, -10.0], "size": [20.0, 8.0, 20.0]},
+  "connectors": [
+    {"type": 0, "pos": [-10.0, 0.0, 0.0], "fwd": [-1.0, 0.0, 4.371139e-08]},
+    {"type": 0, "pos": [0.0, 0.0, -10.0], "fwd": [0.0, 0.0, -1.0]}
+  ],
+  "display_name": "small_rock_room_2",
+  "id": "small_rock_room_2",
+  "max_depth": 999,
+  "min_depth": 0,
+  "packed_scene": "res://rooms/scenes/small_rock_room_2.tscn",
+  "tags": ["template"]
+}

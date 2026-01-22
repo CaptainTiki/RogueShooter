@@ -1,0 +1,53 @@
+{
+	"base_weight": 1.0,
+	"bounds_local": {
+		"position": [
+			-9.0,
+			0.0,
+			-9.0
+		],
+		"size": [
+			18.0,
+			8.0,
+			18.0
+		]
+	},
+	"connectors": [
+		{
+			"fwd": [
+				-1.0,
+				0.0,
+				0.0000000437113882867379
+			],
+			"pos": [
+				-9.0,
+				0.0,
+				0.0
+			],
+			"type": 0
+		},
+		{
+			"fwd": [
+				1.0,
+				0.0,
+				0.0000000437113882867379
+			],
+			"pos": [
+				9.0,
+				0.0,
+				0.0
+			],
+			"type": 0
+		}
+	],
+	"display_name": "small_rock_room_1",
+	"id": "small_rock_room_1",
+	"max_depth": 999,
+	"min_depth": 0,
+	"packed_scene": "res://rooms/scenes/small_rock_room_1.tscn",
+	"tags": [
+		"small",
+		"rock",
+		"arena"
+	]
+}

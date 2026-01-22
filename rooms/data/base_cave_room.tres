@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/rooms/room_connector_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://rooms/scenes/base_cave_room.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/rooms/room_data.gd" id="3"]
+
+[sub_resource type="Resource" id="Resource_conn0"]
+script = ExtResource("1")
+connector_type = 0
+position_local = Vector3(20, 0, 0)
+forward_local = Vector3(1, 0, 4.371139e-08)
+
+[resource]
+script = ExtResource("3")
+id = "base_cave_room"
+display_name = "base_cave_room"
+packed_scene = ExtResource("2")
+bounds_local = AABB(-21, 0, -21, 42, 10, 42)
+connectors = Array[ExtResource("1")]([SubResource("Resource_conn0")])
+tags = PackedStringArray("base", "cave")
+base_weight = 1.0
+min_depth = 0
+max_depth = 0

@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbiobg0lkpcr7"]
+
+[ext_resource type="Script" uid="uid://cufmmxh0a76cn" path="res://scripts/rooms/room_bounds_marker.gd" id="2"]
+[ext_resource type="Script" uid="uid://46fdcltssahi" path="res://scripts/rooms/room_connector.gd" id="3"]
+
+[node name="base_cave_room" type="Node3D"]
+
+[node name="RoomTools" type="Node" parent="."]
+script = ExtResource("2")
+
+[node name="Connectors" type="Node3D" parent="."]
+visible = false
+script = ExtResource("3")
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="CSG" type="CSGCombiner3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.1, -6)
+
+[node name="Step_05" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, 8)
+use_collision = true
+size = Vector3(12, 0.5, 12)
+
+[node name="Step_05_Bridge" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19.5)
+use_collision = true
+size = Vector3(28, 8, 1)
+
+[node name="Wall_S" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19.5)
+use_collision = true
+size = Vector3(28, 8, 1)
+
+[node name="Wall_W" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 4, -13)
+use_collision = true
+size = Vector3(1, 8, 14)
+
+[node name="Wall_E_Bot" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 14.5, 4, -14.5)
+use_collision = true
+size = Vector3(1, 8, 12)
+
+[node name="Wall_NW" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -14.5, 4, -14.5)
+use_collision = true
+size = Vector3(1, 8, 12)
+
+[node name="Wall_SE" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 14.5, 4, 14.5)
+use_collision = true
+size = Vector3(1, 8, 12)
+
+[node name="Wall_SW" type="CSGBox3D" parent="Geometry/CSG"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -6, 2.2, 6)
+use_collision = true
+size = Vector3(1, 8, 12)
+
+[node name="Rock_1" type="CSGSphere3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.6, -4)
+use_collision = true
+radius = 1.6
+
+[node name="Rock_2" type="CSGSphere3D" parent="Geometry/CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.2, -12)
+use_collision = true
+radius = 1.2

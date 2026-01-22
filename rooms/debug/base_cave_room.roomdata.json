@@ -1,0 +1,13 @@
+{
+  "id": "base_cave_room",
+  "display_name": "base_cave_room",
+  "packed_scene": "res://rooms/scenes/base_cave_room.tscn",
+  "bounds_local": {"position": [-21.0, 0.0, -21.0], "size": [42.0, 10.0, 42.0]},
+  "tags": ["base", "cave"],
+  "base_weight": 1.0,
+  "min_depth": 0,
+  "max_depth": 0,
+  "connectors": [
+    {"type": 0, "pos": [20.0, 0.0, 0.0], "fwd": [1.0, 0.0, 4.371139e-08]}
+  ]
+}

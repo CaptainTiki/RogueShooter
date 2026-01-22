@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=6 format=3 uid="uid://du8qcq2leeyms"]
+
+[ext_resource type="Script" uid="uid://btload61rsxi4" path="res://scripts/rooms/room_connector_data.gd" id="1_05f7x"]
+[ext_resource type="PackedScene" path="res://rooms/scenes/small_rock_room_1.tscn" id="2_hboe3"]
+[ext_resource type="Script" uid="uid://kfh72c6xgfjt" path="res://scripts/rooms/room_data.gd" id="3_dohkv"]
+
+[sub_resource type="Resource" id="Resource_e7um1"]
+script = ExtResource("1_05f7x")
+position_local = Vector3(-9, 0, 0)
+forward_local = Vector3(-1, 0, 4.371139e-08)
+
+[sub_resource type="Resource" id="Resource_d7s00"]
+script = ExtResource("1_05f7x")
+position_local = Vector3(9, 0, 0)
+forward_local = Vector3(1, 0, 4.371139e-08)
+
+[resource]
+script = ExtResource("3_dohkv")
+id = "small_rock_room_1"
+display_name = "small_rock_room_1"
+packed_scene = ExtResource("2_hboe3")
+bounds_local = AABB(-9, 0, -9, 18, 8, 18)
+connectors = Array[ExtResource("1_05f7x")]([SubResource("Resource_e7um1"), SubResource("Resource_d7s00")])
+tags = PackedStringArray("small", "rock", "arena")

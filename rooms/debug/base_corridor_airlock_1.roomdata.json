@@ -1,0 +1,14 @@
+{
+  "id": "base_corridor_airlock_1",
+  "display_name": "base_corridor_airlock_1",
+  "packed_scene": "res://rooms/scenes/base_corridor_airlock_1.tscn",
+  "bounds_local": {"position": [-16.0, 0.0, -5.0], "size": [32.0, 8.0, 10.0]},
+  "tags": ["hall", "transition", "airlock"],
+  "base_weight": 1.0,
+  "min_depth": 0,
+  "max_depth": 0,
+  "connectors": [
+    {"type": 0, "pos": [-16.0, 0.0, 0.0], "fwd": [-1.0, 0.0, 4.371139e-08]},
+    {"type": 0, "pos": [16.0, 0.0, 0.0], "fwd": [1.0, 0.0, 4.371139e-08]}
+  ]
+}

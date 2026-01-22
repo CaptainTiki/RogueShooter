@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=6 format=3 uid="uid://tdyj2js747h6"]
+
+[ext_resource type="Script" uid="uid://btload61rsxi4" path="res://scripts/rooms/room_connector_data.gd" id="1_7xgel"]
+[ext_resource type="PackedScene" uid="uid://cm3ialblyiyjw" path="res://rooms/scenes/small_rock_room_2.tscn" id="2_yx61l"]
+[ext_resource type="Script" uid="uid://kfh72c6xgfjt" path="res://scripts/rooms/room_data.gd" id="3_5vxbv"]
+
+[sub_resource type="Resource" id="Resource_c0n0"]
+script = ExtResource("1_7xgel")
+connector_type = 0
+position_local = Vector3(-10, 0, 0)
+forward_local = Vector3(-1, 0, 4.371139e-08)
+
+[sub_resource type="Resource" id="Resource_c0n1"]
+script = ExtResource("1_7xgel")
+connector_type = 0
+position_local = Vector3(0, 0, -10)
+forward_local = Vector3(0, 0, -1)
+
+[resource]
+script = ExtResource("3_5vxbv")
+id = "small_rock_room_2"
+display_name = "small_rock_room_2"
+packed_scene = ExtResource("2_yx61l")
+bounds_local = AABB(-10, 0, -10, 20, 8, 20)
+connectors = Array[ExtResource("1_7xgel")]([SubResource("Resource_c0n0"), SubResource("Resource_c0n1")])
+tags = PackedStringArray("template")
