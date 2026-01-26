@@ -115,6 +115,7 @@ spot_angle_attenuation = 3.6050022
 player = NodePath("../..")
 
 [node name="WeaponController" parent="Components" node_paths=PackedStringArray("camera", "weapon_model_parent", "weapon_state_chart") instance=ExtResource("6_4vr2v")]
+visible = false
 camera = NodePath("../CameraController/Camera3D")
 weapon_model_parent = NodePath("../CameraController/Camera3D")
 weapon_state_chart = NodePath("../../WeaponStateChart")
@@ -359,6 +360,13 @@ script = ExtResource("29_26d1a")
 
 [node name="CycleDownState" type="Node" parent="WeaponStateMachine"]
 script = ExtResource("30_bb0bp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4712777, 0)
+light_indirect_energy = 0.3
+light_specular = 0.2
+omni_range = 35.0
+omni_attenuation = 0.3
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded" to="StateMachine/MovementState/GroundedState" method="_on_grounded_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded/Idle" to="StateMachine/MovementState/GroundedState/IdleState" method="_on_idle_state_physics_processing"]

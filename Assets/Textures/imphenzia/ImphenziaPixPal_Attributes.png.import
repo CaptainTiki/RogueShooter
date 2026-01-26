@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv50qx4r40twy"
-path.s3tc="res://.godot/imported/ImphenziaPixPal_Attributes.png-9d2c0cca5dabce45ecf97c1ca0875279.s3tc.ctex"
+path="res://.godot/imported/ImphenziaPixPal_Attributes.png-42a777d822023eff380d20cea8efda62.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/imphenzia/ImphenziaPixPal_Attributes.png"
-dest_files=["res://.godot/imported/ImphenziaPixPal_Attributes.png-9d2c0cca5dabce45ecf97c1ca0875279.s3tc.ctex"]
+source_file="res://assets/textures/imphenzia/ImphenziaPixPal_Attributes.png"
+dest_files=["res://.godot/imported/ImphenziaPixPal_Attributes.png-42a777d822023eff380d20cea8efda62.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

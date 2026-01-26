@@ -1,8 +1,8 @@
 [gd_resource type="VisualShader" load_steps=24 format=3 uid="uid://dxoncufpd7fij"]
 
-[ext_resource type="Texture2D" uid="uid://cetfgmhly23o5" path="res://assets/Textures/imphenzia/ImphenziaPixPal_Emission.png" id="1_4pmhn"]
-[ext_resource type="Texture2D" uid="uid://c6wgkdjen4dn6" path="res://assets/Textures/imphenzia/ImphenziaPixPal_BaseColor.png" id="2_ghj0d"]
-[ext_resource type="Texture2D" uid="uid://dv50qx4r40twy" path="res://assets/Textures/imphenzia/ImphenziaPixPal_Attributes.png" id="3_yqhim"]
+[ext_resource type="Texture2D" uid="uid://cetfgmhly23o5" path="res://assets/textures/imphenzia/ImphenziaPixPal_Emission.png" id="1_4pmhn"]
+[ext_resource type="Texture2D" uid="uid://c6wgkdjen4dn6" path="res://assets/textures/imphenzia/ImphenziaPixPal_BaseColor.png" id="2_ghj0d"]
+[ext_resource type="Texture2D" uid="uid://dv50qx4r40twy" path="res://assets/textures/imphenzia/ImphenziaPixPal_Attributes.png" id="3_yqhim"]
 
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_frlxv"]
 default_input_values = [0, Vector2(0, 0)]
@@ -43,28 +43,29 @@ default_value_enabled = true
 default_value = 20.0
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_atka3"]
-size = Vector2(1124, 444.00003)
+size = Vector2(1124.0001, 432.00018)
 title = "Animated Colors"
 attached_nodes = PackedInt32Array(9, 3, 10, 4, 8, 11)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_lf4tu"]
-size = Vector2(1186, 432.00003)
+size = Vector2(1184, 405)
 title = "Attributes"
 attached_nodes = PackedInt32Array(6, 12, 7, 22)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_6xcqm"]
-size = Vector2(829, 455)
+size = Vector2(812, 434)
 title = "Colors"
 attached_nodes = PackedInt32Array(14, 21)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_1uhbc"]
-size = Vector2(864.00006, 897)
+size = Vector2(864, 873.00006)
 title = "Emission"
 attached_nodes = PackedInt32Array(13, 15, 16, 23)
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_87vov"]
 linked_parent_graph_frame = 19
 parameter_name = "BaseColorTexture"
+texture_type = 1
 texture_filter = 1
 texture_repeat = 1
 
@@ -78,6 +79,7 @@ texture_repeat = 1
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d062q"]
 linked_parent_graph_frame = 20
 parameter_name = "Emission"
+texture_type = 1
 color_default = 1
 texture_filter = 1
 texture_repeat = 1
@@ -111,8 +113,8 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D Attributes : hint_default_black, filter_nearest, repeat_enable;
-uniform sampler2D BaseColorTexture : filter_nearest, repeat_enable;
-uniform sampler2D Emission : hint_default_black, filter_nearest, repeat_enable;
+uniform sampler2D BaseColorTexture : source_color, filter_nearest, repeat_enable;
+uniform sampler2D Emission : source_color, hint_default_black, filter_nearest, repeat_enable;
 uniform float EmissionStrength : hint_range(0.0, 20.0) = 20.0;
 
 
@@ -185,9 +187,9 @@ void fragment() {
 
 }
 "
-preview_params/Attributes = "Resource(\"uid://dv50qx4r40twy\", \"res://assets/Textures/imphenzia/ImphenziaPixPal_Attributes.png\")"
-preview_params/BaseColorTexture = "Resource(\"uid://c6wgkdjen4dn6\", \"res://assets/Textures/imphenzia/ImphenziaPixPal_BaseColor.png\")"
-preview_params/Emission = "Resource(\"uid://cetfgmhly23o5\", \"res://assets/Textures/imphenzia/ImphenziaPixPal_Emission.png\")"
+preview_params/Attributes = "Resource(\"uid://dv50qx4r40twy\", \"res://assets/textures/imphenzia/ImphenziaPixPal_Attributes.png\")"
+preview_params/BaseColorTexture = "Resource(\"uid://c6wgkdjen4dn6\", \"res://assets/textures/imphenzia/ImphenziaPixPal_BaseColor.png\")"
+preview_params/Emission = "Resource(\"uid://cetfgmhly23o5\", \"res://assets/textures/imphenzia/ImphenziaPixPal_Emission.png\")"
 nodes/fragment/0/position = Vector2(2020, -780)
 nodes/fragment/3/node = SubResource("VisualShaderNodeInput_vpdvu")
 nodes/fragment/3/position = Vector2(-80, 120)

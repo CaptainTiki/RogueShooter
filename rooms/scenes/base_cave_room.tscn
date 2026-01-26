@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://be8j6au80wf1t" path="res://scripts/rooms/room_tools.gd" id="1_qoe3w"]
 [ext_resource type="Script" uid="uid://46fdcltssahi" path="res://scripts/rooms/room_connector.gd" id="3"]
-[ext_resource type="Material" uid="uid://20cal6k8sqf4" path="res://assets/Materials/Pix.tres" id="4_a5sqg"]
+[ext_resource type="Material" uid="uid://20cal6k8sqf4" path="res://assets/materials/Pix.tres" id="4_a5sqg"]
 [ext_resource type="PackedScene" uid="uid://xh41gtl4ohj0" path="res://assets/Rooms/Base/base_cave_door.tscn" id="4_gan5m"]
 [ext_resource type="PackedScene" uid="uid://xechhcwqdfrf" path="res://assets/Rooms/Base/base_cave_floor.tscn" id="5_a5sqg"]
 [ext_resource type="PackedScene" uid="uid://cluq0ehsjgsek" path="res://assets/Rooms/Base/base_cave_stairs_1.tscn" id="6_f7ifh"]
@@ -15,6 +15,7 @@
 
 [node name="RoomTools" type="Node" parent="."]
 script = ExtResource("1_qoe3w")
+default_tags = PackedStringArray()
 
 [node name="Connectors" type="Node3D" parent="."]
 visible = false
@@ -28,9 +29,14 @@ script = ExtResource("3")
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1599078, -7.4187613)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1599078, -2.4187613)
 material_override = ExtResource("4_a5sqg")
 mesh = SubResource("CapsuleMesh_gan5m")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Geometry/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5637882, 0)
+omni_range = 3.0
+omni_attenuation = 2.0
 
 [node name="base_cave_door" parent="Geometry" instance=ExtResource("4_gan5m")]
 
