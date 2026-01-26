@@ -1,26 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm3ialblyiyjw"]
+[gd_scene load_steps=3 format=3 uid="uid://cm3ialblyiyjw"]
 
 [ext_resource type="Script" uid="uid://be8j6au80wf1t" path="res://scripts/rooms/room_tools.gd" id="1"]
-[ext_resource type="Script" uid="uid://cufmmxh0a76cn" path="res://scripts/rooms/room_bounds_marker.gd" id="2"]
 [ext_resource type="Script" uid="uid://46fdcltssahi" path="res://scripts/rooms/room_connector.gd" id="3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gmml"]
-transparency = 1
-albedo_color = Color(0.3529412, 0.3529412, 0.3529412, 0)
 
 [node name="sm_rock_room_2" type="Node3D"]
 
 [node name="RoomTools" type="Node" parent="."]
 script = ExtResource("1")
 default_tags = PackedStringArray("template")
-
-[node name="BoundsMarker" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-size = Vector3(20, 8, 20)
-material = SubResource("StandardMaterial3D_8gmml")
-script = ExtResource("2")
-size = Vector3(20, 8, 20)
-center = Vector3(0, 4, 0)
 
 [node name="Connectors" type="Node3D" parent="."]
 

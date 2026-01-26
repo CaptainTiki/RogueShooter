@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1rjuluopobof" path="res://scenes/environment/world_environment.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://5w6f1bd5hvsy" path="res://levels/level.gd" id="1_qd0o6"]
-[ext_resource type="PackedScene" path="res://rooms/scenes/base_cave_room.tscn" id="2_base"]
-[ext_resource type="PackedScene" path="res://rooms/scenes/base_corridor_airlock_1.tscn" id="3_corr"]
+[ext_resource type="PackedScene" uid="uid://dbiobg0lkpcr7" path="res://rooms/scenes/base_cave_room.tscn" id="2_base"]
 [ext_resource type="PackedScene" uid="uid://db1wudsjtmdvw" path="res://scenes/player/PlayerController.tscn" id="2_ycx7s"]
 [ext_resource type="PackedScene" uid="uid://cru5cesyyodit" path="res://scenes/interactable/weaponbench/weapon_bench.tscn" id="4_6lfjr"]
 [ext_resource type="PackedScene" uid="uid://l3lmnhrsgv4q" path="res://scenes/interactable/chest/chest.tscn" id="6_i5e4g"]
@@ -17,9 +16,6 @@ script = ExtResource("1_qd0o6")
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="BaseRoom" parent="Geometry" instance=ExtResource("2_base")]
-
-[node name="Corridor" parent="Geometry" instance=ExtResource("3_corr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0)
 
 [node name="PlayerController" parent="." instance=ExtResource("2_ycx7s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.2, 2)

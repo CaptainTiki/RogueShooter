@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://di6x6gw8xbc1r"]
+
+[ext_resource type="PackedScene" uid="uid://cpht0km2bncjk" path="res://assets/Rooms/Base/base_cave_stairs_2.glb" id="1_kikti"]
+[ext_resource type="Material" uid="uid://20cal6k8sqf4" path="res://assets/Materials/Pix.tres" id="2_t27hi"]
+
+[node name="base_cave_stairs_2" instance=ExtResource("1_kikti")]
+
+[node name="stairs_2" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_t27hi")

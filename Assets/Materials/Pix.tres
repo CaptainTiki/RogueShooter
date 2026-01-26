@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://20cal6k8sqf4"]
+
+[ext_resource type="Shader" uid="uid://dxoncufpd7fij" path="res://assets/Materials/ImphenziaPixPal.tres" id="1_51vpx"]
+[ext_resource type="Texture2D" uid="uid://dv50qx4r40twy" path="res://assets/Textures/imphenzia/ImphenziaPixPal_Attributes.png" id="2_df5ww"]
+[ext_resource type="Texture2D" uid="uid://c6wgkdjen4dn6" path="res://assets/Textures/imphenzia/ImphenziaPixPal_BaseColor.png" id="3_4pikp"]
+[ext_resource type="Texture2D" uid="uid://cetfgmhly23o5" path="res://assets/Textures/imphenzia/ImphenziaPixPal_Emission.png" id="4_406pw"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_51vpx")
+shader_parameter/Attributes = ExtResource("2_df5ww")
+shader_parameter/BaseColorTexture = ExtResource("3_4pikp")
+shader_parameter/Emission = ExtResource("4_406pw")
+shader_parameter/EmissionStrength = 1.4000000665

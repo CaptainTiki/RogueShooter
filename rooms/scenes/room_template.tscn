@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4i4uckdx3bfp"]
+[gd_scene load_steps=3 format=3 uid="uid://b4i4uckdx3bfp"]
 
 [ext_resource type="Script" uid="uid://be8j6au80wf1t" path="res://scripts/rooms/room_tools.gd" id="1"]
-[ext_resource type="Script" uid="uid://cufmmxh0a76cn" path="res://scripts/rooms/room_bounds_marker.gd" id="2"]
 [ext_resource type="Script" uid="uid://46fdcltssahi" path="res://scripts/rooms/room_connector.gd" id="3"]
 
 [node name="RoomTemplate" type="Node3D"]
@@ -9,10 +8,6 @@
 [node name="RoomTools" type="Node" parent="."]
 script = ExtResource("1")
 default_tags = PackedStringArray("template")
-
-[node name="BoundsMarker" type="CSGBox3D" parent="."]
-script = ExtResource("2")
-center = Vector3(0, 4, 0)
 
 [node name="Connectors" type="Node3D" parent="."]
 

@@ -8,9 +8,10 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_ycx7s")
 
 [sub_resource type="Environment" id="Environment_6lfjr"]
-background_mode = 2
 sky = SubResource("Sky_htrvu")
-tonemap_mode = 2
+tonemap_mode = 3
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
@@ -18,4 +19,6 @@ environment = SubResource("Environment_6lfjr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+light_energy = 0.75
 shadow_enabled = true

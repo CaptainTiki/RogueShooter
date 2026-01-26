@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxdtqoty13fw7"]
+
+[ext_resource type="PackedScene" uid="uid://bepjqe6doxuu8" path="res://assets/Rooms/Base/base_cave_walls.glb" id="1_hlxrh"]
+[ext_resource type="Material" uid="uid://20cal6k8sqf4" path="res://assets/Materials/Pix.tres" id="2_c5xmc"]
+
+[node name="base_cave_walls" instance=ExtResource("1_hlxrh")]
+
+[node name="Walls" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_c5xmc")

@@ -108,10 +108,10 @@ func _build_effect_lines(m: WeaponMod) -> Array[String]:
 	var out: Array[String] = []
 	_add_if_nonzero(out, "Damage", m.damage_add, m.damage_mul)
 	_add_if_nonzero(out, "Range", m.distance_add, m.distance_mul)
-	_add_if_nonzero(out, "Recoil", m.recoil_add, m.recoil_mul, true)
-	_add_if_nonzero(out, "Spread", m.spread_add, m.spread_mul, true)
-	_add_if_nonzero(out, "Reload", m.reload_speed_add, m.reload_speed_mul, true)
-	_add_if_nonzero(out, "Fire Interval", m.shot_interval_add, m.shot_interval_mul, true)
+	_add_if_nonzero(out, "Recoil", m.recoil_add, m.recoil_mul)
+	_add_if_nonzero(out, "Spread", m.spread_add, m.spread_mul)
+	_add_if_nonzero(out, "Reload", m.reload_speed_add, m.reload_speed_mul)
+	_add_if_nonzero(out, "Fire Interval", m.shot_interval_add, m.shot_interval_mul)
 	if m.ammo_capacity_add != 0.0:
 		out.append("Ammo +%s" % _fmt(m.ammo_capacity_add))
 	if m.fov_amount_add != 0.0:
@@ -124,15 +124,12 @@ func _build_effect_lines(m: WeaponMod) -> Array[String]:
 		out.append("(No stat changes)")
 	return out
 
-func _add_if_nonzero(out: Array[String], label: String, add: float, mul: float, lower_is_better: bool = false) -> void:
-	var had := false
+func _add_if_nonzero(out: Array[String], label: String, add: float, mul: float) -> void:
 	if mul != 1.0:
 		var pct := (mul - 1.0) * 100.0
 		out.append("%s %+.0f%%" % [label, pct])
-		had = true
 	if add != 0.0:
 		out.append("%s %+.2f" % [label, add])
-		had = true
 
 func _format_mod_list_label(m: WeaponMod) -> String:
 	# quick 1-line summary for the list
